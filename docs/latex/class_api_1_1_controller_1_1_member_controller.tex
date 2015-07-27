@@ -1,0 +1,200 @@
+\hypertarget{class_api_1_1_controller_1_1_member_controller}{}\section{Member\+Controller Class Reference}
+\label{class_api_1_1_controller_1_1_member_controller}\index{Member\+Controller@{Member\+Controller}}
+
+
+Inherits \hyperlink{class_api_1_1_controller_1_1_api_controller}{Api\+Controller}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_ac7ab25a032af896296145ac01460e9c7}{getsmscode} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_acc294a6cc8e69743746820e3d15e3f78}{register} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_aa311da27ba5706f5710cea7706c8eae1}{login} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_a760860eafd7560576c2c12824a800a6d}{forgot} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_a4a20559544fdf4dcb457e258dc976cf8}{reset} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_a3df9f5eae7430bdbfaebfcd9bca5f00b}{exist} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_a8ece94e57064ea71801015df652bed08}{info} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_a842e4774e3b3601a005b995c02f7e883}{update} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_a46ebc020150dfdfba0b5a3b4ce1829af}{setphoto} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_a082405d89acd6835c3a7c7a08a7adbab}{logout} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_member_controller_a19e49aea71e41a8bd6076bc45169e4a3}{status} ()
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_api_1_1_controller_1_1_member_controller_a79f6e7f10d34dfbf080ae84d0f8b560b}{}Protected {\bfseries \$auto\+Check\+Fields} = false\label{class_api_1_1_controller_1_1_member_controller_a79f6e7f10d34dfbf080ae84d0f8b560b}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_api_1_1_controller_1_1_member_controller_a3df9f5eae7430bdbfaebfcd9bca5f00b}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!exist@{exist}}
+\index{exist@{exist}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{exist()}]{\setlength{\rightskip}{0pt plus 5cm}exist (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_a3df9f5eae7430bdbfaebfcd9bca5f00b}
+
+\begin{DoxyPre}
+接    口：/member/exist - 检测用户名是否存在
+传    入：user:string
+参数说明： user: 用户名称
+返    回：json: example-\{"status": int, "msg":string, "data": empty\_string\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_a760860eafd7560576c2c12824a800a6d}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!forgot@{forgot}}
+\index{forgot@{forgot}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{forgot()}]{\setlength{\rightskip}{0pt plus 5cm}forgot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_a760860eafd7560576c2c12824a800a6d}
+
+\begin{DoxyPre}
+接    口：/member/forgot - 忘记密码(包括验证用户是否存在/短信验证码是否通过)
+传    入：user:string, code:string
+参数说明： user: 用户名称， code：手机验证码
+返    回：json: example-\{"status": int, "msg":string, "data": empty\_string\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_ac7ab25a032af896296145ac01460e9c7}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!getsmscode@{getsmscode}}
+\index{getsmscode@{getsmscode}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{getsmscode()}]{\setlength{\rightskip}{0pt plus 5cm}getsmscode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_ac7ab25a032af896296145ac01460e9c7}
+
+\begin{DoxyPre}
+接    口：/member/getsmscode - 获取手机验证码
+传    入：user:string
+参数说明： user: 用户名称
+返    回：json: example-\{"status": int, "msg":string, "data": empty\_string\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_a8ece94e57064ea71801015df652bed08}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!info@{info}}
+\index{info@{info}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{info()}]{\setlength{\rightskip}{0pt plus 5cm}info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_a8ece94e57064ea71801015df652bed08}
+
+\begin{DoxyPre}
+接    口：/member/info - 获取用户信息
+传    入：key:string
+参数说明：密匙
+返    回：json: example-\{"status": int, "msg":string, "data": json\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_aa311da27ba5706f5710cea7706c8eae1}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!login@{login}}
+\index{login@{login}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{login()}]{\setlength{\rightskip}{0pt plus 5cm}login (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_aa311da27ba5706f5710cea7706c8eae1}
+
+\begin{DoxyPre}
+接    口：/member/login - 登录接口
+传    入：user:string, password:string
+参数说明： user: 用户名称， password：密码
+返    回：json: example-\{"status": int, "msg":string, "data": empty\_string\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_a082405d89acd6835c3a7c7a08a7adbab}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!logout@{logout}}
+\index{logout@{logout}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{logout()}]{\setlength{\rightskip}{0pt plus 5cm}logout (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_a082405d89acd6835c3a7c7a08a7adbab}
+
+\begin{DoxyPre}
+接    口：/member/logout - 注销登录
+传    入：key
+参数说明：密匙
+返    回：json: example-\{"status": int, "msg":string, "data": json\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_acc294a6cc8e69743746820e3d15e3f78}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!register@{register}}
+\index{register@{register}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{register()}]{\setlength{\rightskip}{0pt plus 5cm}register (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_acc294a6cc8e69743746820e3d15e3f78}
+
+\begin{DoxyPre}
+接    口：/member/register - 注册新用户接口
+传    入：user:string, password:string, code:string
+参数说明： user: 用户名称， password：密码， code：手机验证码
+返    回：json: example-\{"status": int, "msg":string, "data": empty\_string\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_a4a20559544fdf4dcb457e258dc976cf8}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!reset@{reset}}
+\index{reset@{reset}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{reset()}]{\setlength{\rightskip}{0pt plus 5cm}reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_a4a20559544fdf4dcb457e258dc976cf8}
+
+\begin{DoxyPre}
+接    口：/member/reset - 重置密码(包括验证验证两次输入密码是否通过)
+传    入：user:string, password1:string, password2:string
+参数说明： user: 用户名称， password1：密码， password2:密码确认
+返    回：json: example-\{"status": int, "msg":string, "data": empty\_string\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_a46ebc020150dfdfba0b5a3b4ce1829af}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!setphoto@{setphoto}}
+\index{setphoto@{setphoto}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{setphoto()}]{\setlength{\rightskip}{0pt plus 5cm}setphoto (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_a46ebc020150dfdfba0b5a3b4ce1829af}
+
+\begin{DoxyPre}
+接    口：/member/setphoto - 更新用户头像
+传    入：key
+参数说明：密匙
+返    回：json: example-\{"status": int, "msg":string, "data": json\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_a19e49aea71e41a8bd6076bc45169e4a3}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!status@{status}}
+\index{status@{status}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{status()}]{\setlength{\rightskip}{0pt plus 5cm}status (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_a19e49aea71e41a8bd6076bc45169e4a3}
+
+\begin{DoxyPre}
+接    口：/member/status - 获取在线状态
+传    入：user
+参数说明：用户
+返    回：json: example-\{"status": int, "msg":string, "data": json\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_member_controller_a842e4774e3b3601a005b995c02f7e883}{}\index{Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}!update@{update}}
+\index{update@{update}!Api\+::\+Controller\+::\+Member\+Controller@{Api\+::\+Controller\+::\+Member\+Controller}}
+\subsubsection[{update()}]{\setlength{\rightskip}{0pt plus 5cm}update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_member_controller_a842e4774e3b3601a005b995c02f7e883}
+
+\begin{DoxyPre}
+接    口：/member/update - 更新用户信息
+传    入：key:string, nickname:sting|昵称, birthday: string|(1980-01-01), sex: int|0:男|1：女
+参数说明：密匙
+返    回：json: example-\{"status": int, "msg":string, "data": json\}
+\end{DoxyPre}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+H\+H\+H/wamp/www/51bb/\+Application/\+Api/\+Controller/Member\+Controller.\+class.\+php\end{DoxyCompactItemize}

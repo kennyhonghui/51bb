@@ -1,0 +1,50 @@
+\hypertarget{class_api_1_1_controller_1_1_category_controller}{}\section{Category\+Controller Class Reference}
+\label{class_api_1_1_controller_1_1_category_controller}\index{Category\+Controller@{Category\+Controller}}
+
+
+Inherits \hyperlink{class_api_1_1_controller_1_1_api_controller}{Api\+Controller}.
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_api_1_1_controller_1_1_category_controller_a4ca848bfe0e01782f5f8c05d11640e1a}{getlist} ()
+\item 
+\hyperlink{class_api_1_1_controller_1_1_category_controller_abedd95dc5fbc64df72730e760287e189}{getinfo} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_api_1_1_controller_1_1_category_controller_abedd95dc5fbc64df72730e760287e189}{}\index{Api\+::\+Controller\+::\+Category\+Controller@{Api\+::\+Controller\+::\+Category\+Controller}!getinfo@{getinfo}}
+\index{getinfo@{getinfo}!Api\+::\+Controller\+::\+Category\+Controller@{Api\+::\+Controller\+::\+Category\+Controller}}
+\subsubsection[{getinfo()}]{\setlength{\rightskip}{0pt plus 5cm}getinfo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_category_controller_abedd95dc5fbc64df72730e760287e189}
+
+\begin{DoxyPre}
+接    口：/category/getinfo - 根据cid获取行业分类信息
+传    入：cid:int
+参数说明： cid: 分类id
+返    回：json: example-\{"status": int, "msg":string, "data": json\}
+\end{DoxyPre}
+ \hypertarget{class_api_1_1_controller_1_1_category_controller_a4ca848bfe0e01782f5f8c05d11640e1a}{}\index{Api\+::\+Controller\+::\+Category\+Controller@{Api\+::\+Controller\+::\+Category\+Controller}!getlist@{getlist}}
+\index{getlist@{getlist}!Api\+::\+Controller\+::\+Category\+Controller@{Api\+::\+Controller\+::\+Category\+Controller}}
+\subsubsection[{getlist()}]{\setlength{\rightskip}{0pt plus 5cm}getlist (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_api_1_1_controller_1_1_category_controller_a4ca848bfe0e01782f5f8c05d11640e1a}
+
+\begin{DoxyPre}
+接    口：/category/getlist - 获取行业分类信息
+传    入：parent:int
+参数说明： parent: 父栏目id - 传入 0 表示列出所有的一级分类信息
+返    回：json: example-\{"status": int, "msg":string, "data": json\}
+\end{DoxyPre}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+H\+H\+H/wamp/www/51bb/\+Application/\+Api/\+Controller/Category\+Controller.\+class.\+php\end{DoxyCompactItemize}
