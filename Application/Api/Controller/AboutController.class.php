@@ -15,7 +15,7 @@ class AboutController extends ApiController
 
     /**
      * <pre>
-     * 接    口：/about/feedback - 获取版本信息
+     * 接    口：/about/version - 获取版本信息
      * 返    回：json: example-{"status": int, "msg":string, "data": string}
      * </pre>
      */
@@ -31,10 +31,43 @@ class AboutController extends ApiController
      * 返    回：json: example-{"status": int, "msg":string, "data": empty_string}
      * </pre>
      */
-   public function feedback(){
-       $key = $this -> post('key');
-       $content = $this -> post('content');
-       $result =  D('About')->feedback( $key, $content );
-       $this -> respons($result);
-   }
+    public function feedback(){
+        $key = $this -> post('key');
+        $content = $this -> post('content');
+        $result =  D('About')->feedback( $key, $content );
+        $this -> respons($result);
+    }
+
+    /**
+     * <pre>
+     * 接    口：/about/announce - 公告列表
+     * 返    回：json: example-{"status": int, "msg":string, "data": json}
+     * </pre>
+     */
+    public function announce(){
+        $result = D('About')->announce();
+        $this -> respons($result['code'], $result['data']);
+    }
+
+    /**
+     * <pre>
+     * 接    口：/about/about - 关于无忧帮帮
+     * 返    回：json: example-{"status": int, "msg":string, "data": json}
+     * </pre>
+     */
+    public function about(){
+        $result = D('About')->about('ABOUTWUYOUBANGBAGN');
+        $this -> respons($result['code'], $result['data']);
+    }
+
+    /**
+     * <pre>
+     * 接    口：/about/declaration - 无忧帮帮声明
+     * 返    回：json: example-{"status": int, "msg":string, "data": json}
+     * </pre>
+     */
+    public function declaration(){
+        $result = D('About')->about('WUYOUBANGBANGDECLARE');
+        $this -> respons($result['code'], $result['data']);
+    }
 }

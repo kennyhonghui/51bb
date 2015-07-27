@@ -47,4 +47,57 @@ class AboutModel extends Model{
             return $userinfo;
         }
     }
+
+    /**
+     * 获取公告列表
+     * @return array
+     */
+    public function announce(){
+        $limit = C('ANNOUNCE_NUM');  //显示数量限制
+        $model = M('document');
+        $result = $model ->join('join bb_category as C on bb_document.category_id=C.id')
+                         ->field('bb_document.id,bb_document.title')
+                         ->where('C.name="announce" and bb_document.category_id=C.id and bb_document.status=1')
+                         ->order('bb_document.id desc')
+                         ->limit($limit)
+                         ->select();
+        if( is_array($result) ){
+            return array(
+                'code' => 0,
+                'data'   => $result
+            );
+        }
+        return array(
+            'code' => 30000,
+            'data'   => ''
+        );
+    }
+
+    /**
+     * 获取关于无忧帮帮的文章内容
+     * @return array
+     */
+    public function about($document_name){
+        //ABOUTWUYOUBANGBAGN - 关于无忧帮帮
+        //WUYOUBANGBANGDECLARE - 无忧帮帮声明
+        $model = M('document');
+        $result = $model ->join('join `bb_document_article` as A on bb_document.id=A.id')
+            ->field('bb_document.title,A.content')
+            ->where('bb_document.status=1 and bb_document.name="'.$document_name.'"')
+            ->order('bb_document.id desc')
+            ->limit(1)
+            ->select();
+        if( is_array($result) ){
+            return array(
+                'code' => 0,
+                'data'   => $result
+            );
+        }
+        return array(
+            'code' => 30000,
+            'data'   => ''
+        );
+    }
+
+
 }

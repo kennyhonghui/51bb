@@ -1,8 +1,8 @@
 <?php
 header('Content-Type:text/html;charset=utf-8');
 
-//$server = 'http://localhost/51bb/api';
-$server = 'http://51.281.com.cn/?s=api';
+$server = 'http://localhost/51bb/api';
+//$server = 'http://51.281.com.cn/?s=api';
 
 $token = 'e949u0vIJmqYZF8dZHHmcx2p+fyAhP5ODtY8wLy2tkEPxfe5nr5O1qGJ7nfzew';
 
@@ -58,16 +58,16 @@ function output( $data, $encode = 1 ){
 	// 'sex' => '0',
 // ); 
 
-// $postdata = array(
-	// 'key' => '0411ba245186e8463d36de23b11b62f9',
-	// 'token' => $token,
-	 // 'nickname' => 'Amy',
-	 // 'birthday' => '1977-06-09',
-	 // 'sex' => '1',
-	 // 'password' => '123456',
-	 // 'user' => '15913361892',
-	 // 'content' => '我要吃肯德基',
-// ); 
+$postdata = array(
+	'key' => '0411ba245186e8463d36de23b11b62f9',
+	'token' => $token,
+	 'nickname' => 'Amy',
+	 'birthday' => '1977-06-09',
+	 'sex' => '1',
+	 'password' => '123456',
+	 'user' => '15913361892',
+	 'content' => '我要吃肯德基',
+); 
 
 /**  用户中心部分 ***/
 //$data = getRequest( $server . '/member/getsmscode', $postdata, 'string' );
@@ -94,10 +94,13 @@ function output( $data, $encode = 1 ){
 /***  ABOUT模块   ***/
 //$data = getRequest( $server . '/about/feedback', $postdata, 'string' );
 //$data = getRequest( $server . '/about/version', $postdata, 'string' );
-//output($data, 0);
+//$data = getRequest( $server . '/about/announce', $postdata, 'string' );
+//$data = getRequest( $server . '/about/about', $postdata, 'string' );
+//$data = getRequest( $server . '/about/declaration', $postdata, 'string' );
+output($data, 0);
 ?>
 
-
+<!--
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -113,3 +116,4 @@ function output( $data, $encode = 1 ){
 	<input id="token" name="token" type="hidden" value="e949u0vIJmqYZF8dZHHmcx2p+fyAhP5ODtY8wLy2tkEPxfe5nr5O1qGJ7nfzew" style="display:none">
 </form>
 <iframe id="exec_target" name="exec_target" width=100% height=100%></iframe>
+-->

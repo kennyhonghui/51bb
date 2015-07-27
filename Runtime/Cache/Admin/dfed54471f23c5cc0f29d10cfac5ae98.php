@@ -120,16 +120,6 @@
 							<input type="text" name="name" class="text input-large" value="<?php echo ((isset($info["name"]) && ($info["name"] !== ""))?($info["name"]):''); ?>">
 						</div>
 					</div>
-
-                    <div class="form-item">
-                        <label class="item-label">分类建议信息</label>
-                        <div class="controls">
-                            <label class="textarea input-large">
-                                <textarea name="suggestion" placeholder="输入分类建议信息，多条建议请使用回车隔开"></textarea>
-                            </label>
-                        </div>
-                    </div>
-
 					<div class="form-item">
 						<label class="item-label">分组定义</label>
 						<div class="controls">

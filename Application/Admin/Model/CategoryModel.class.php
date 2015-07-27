@@ -132,24 +132,9 @@ class CategoryModel extends Model{
         /* 添加或更新数据 */
         if(empty($data['id'])){
             $res = $this->add();
-
-            //插入建议信息
-            //$catedata = M('51_catedata');
-            //$suggestion['data'] = $data['suggestion'];
-            //$suggestion['catid'] = ;
-           // $catedata -> add( $suggestion );
-
         }else{
             $res = $this->save();
-
-            //插入建议信息
-            $catedata = M('51_catedata');
-            $suggestion['data'] = $data['suggestion'];
-            $catedata -> where('catid="'. $data['id'] .'"') -> save( $suggestion );
         }
-
-
-
 
         //更新分类缓存
         S('sys_category_list', null);
