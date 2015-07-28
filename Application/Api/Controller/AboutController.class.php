@@ -16,11 +16,12 @@ class AboutController extends ApiController
     /**
      * <pre>
      * 接    口：/about/version - 获取版本信息
-     * 返    回：json: example-{"status": int, "msg":string, "data": string}
+     * 返    回：json: example-{"status": int, "msg":string, "data": json}
      * </pre>
      */
     public function version(){
-        return $this->respons(0, C('version'));
+        $result = D('About') -> version();
+        return $this->respons($result['code'], $result['data']);
     }
 
     /**

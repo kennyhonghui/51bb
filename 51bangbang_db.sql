@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-07-27 07:30:26
+-- Generation Time: 2015-07-28 15:11:35
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -33,13 +33,6 @@ CREATE TABLE IF NOT EXISTS `bb_51_catedata` (
   PRIMARY KEY (`id`),
   KEY `catid` (`catid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `bb_51_catedata`
---
-
-INSERT INTO `bb_51_catedata` (`id`, `catid`, `data`) VALUES
-(1, 39, '');
 
 -- --------------------------------------------------------
 
@@ -134,14 +127,15 @@ CREATE TABLE IF NOT EXISTS `bb_51_smscode` (
   `lastaction` varchar(10) NOT NULL COMMENT '使用验证码最后动作',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mobile` (`mobile`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `bb_51_smscode`
 --
 
 INSERT INTO `bb_51_smscode` (`id`, `mobile`, `count`, `datetime`, `code`, `todo`, `lastaction`) VALUES
-(1, '15913361892', 1, '0000-00-00 00:00:00', '027311', '', 'REGISTER');
+(1, '15913361892', 4, '2015-07-28 19:34:55', '935239', '', 'REGISTER'),
+(2, '13000000000', 2, '2015-07-28 19:30:13', '943734', '', '');
 
 -- --------------------------------------------------------
 
@@ -176,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `bb_51_user` (
 --
 
 INSERT INTO `bb_51_user` (`uid`, `userphoto`, `nickname`, `sex`, `mobile`, `password`, `birthday`, `qq`, `score`, `login`, `reg_ip`, `reg_time`, `last_login_ip`, `last_login_time`, `status`, `login_status`) VALUES
-(1, '', '', 0, '15913361892', 'd93a5def7511da3d0f2d171d9c344e91', '0000-00-00', '', 5, 0, 0, 1437805375, '127.0.0.1', 1437805418, 1, 1);
+(1, '', '', 0, '15913361892', 'd93a5def7511da3d0f2d171d9c344e91', '0000-00-00', '', 5, 0, 0, 1437805375, '127.0.0.1', 1438051992, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -197,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `bb_51_userdata` (
 --
 
 INSERT INTO `bb_51_userdata` (`id`, `uid`, `userkey`) VALUES
-(1, 1, 'fa3d3048cedea0561c61aeb8cff73275');
+(1, 1, '3fb8e418c472db431f45122e93f0e000');
 
 -- --------------------------------------------------------
 
@@ -255,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `bb_action_log` (
   KEY `action_ip_ix` (`action_ip`),
   KEY `action_id_ix` (`action_id`),
   KEY `user_id_ix` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='行为日志表' AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='行为日志表' AUTO_INCREMENT=60 ;
 
 --
 -- 转存表中的数据 `bb_action_log`
@@ -279,7 +273,48 @@ INSERT INTO `bb_action_log` (`id`, `action_id`, `user_id`, `action_ip`, `model`,
 (15, 11, 1, 2130706433, 'category', 39, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437808459),
 (16, 11, 1, 2130706433, 'category', 39, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437810236),
 (17, 11, 1, 2130706433, 'category', 39, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437810482),
-(18, 11, 1, 2130706433, 'category', 2, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437810881);
+(18, 11, 1, 2130706433, 'category', 2, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437810881),
+(19, 1, 1, 2130706433, 'member', 1, 'admin在2015-07-27 18:21登录了后台', 1, 1437992495),
+(20, 11, 1, 2130706433, 'category', 1, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1437992780),
+(21, 1, 1, 2130706433, 'member', 1, 'admin在2015-07-27 18:26登录了后台', 1, 1437992813),
+(22, 11, 1, 2130706433, 'category', 2, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1437992966),
+(23, 11, 1, 2130706433, 'category', 2, '操作url：/51bb/admin.php?s=/Category/remove/id/2.html', 1, 1437993122),
+(24, 11, 1, 2130706433, 'category', 1, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437995299),
+(25, 11, 1, 2130706433, 'category', 1, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437995341),
+(26, 11, 1, 2130706433, 'category', 1, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437995399),
+(27, 11, 1, 2130706433, 'category', 1, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1437995751),
+(28, 1, 1, 2130706433, 'member', 1, 'admin在2015-07-27 19:16登录了后台', 1, 1437995774),
+(29, 11, 1, 2130706433, 'category', 1, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437996060),
+(30, 11, 1, 2130706433, 'category', 1, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437996066),
+(31, 11, 1, 2130706433, 'category', 2, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1437996352),
+(32, 11, 1, 2130706433, 'category', 3, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1437996431),
+(33, 11, 1, 2130706433, 'category', 4, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1437996449),
+(34, 11, 1, 2130706433, 'category', 5, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1437996498),
+(35, 1, 1, 2130706433, 'member', 1, 'admin在2015-07-27 20:02登录了后台', 1, 1437998553),
+(36, 11, 1, 2130706433, 'category', 4, '操作url：/51bb/admin.php?s=/Category/remove/id/4.html', 1, 1437998582),
+(37, 11, 1, 2130706433, 'category', 5, '操作url：/51bb/admin.php?s=/Category/remove/id/5.html', 1, 1437998621),
+(38, 11, 1, 2130706433, 'category', 3, '操作url：/51bb/admin.php?s=/Category/remove/id/3.html', 1, 1437998624),
+(39, 11, 1, 2130706433, 'category', 2, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437998638),
+(40, 11, 1, 2130706433, 'category', 2, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1437998739),
+(41, 1, 1, 2130706433, 'member', 1, 'admin在2015-07-28 11:17登录了后台', 1, 1438053470),
+(42, 1, 1, 2130706433, 'member', 1, 'admin在2015-07-28 19:52登录了后台', 1, 1438084372),
+(43, 6, 1, 2130706433, 'config', 38, '操作url：/51bb/admin.php?s=/Config/edit.html', 1, 1438084557),
+(44, 11, 1, 2130706433, 'category', 6, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1438086872),
+(45, 11, 1, 2130706433, 'category', 7, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1438086924),
+(46, 11, 1, 2130706433, 'category', 8, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1438086979),
+(47, 11, 1, 2130706433, 'category', 8, '操作url：/51bb/admin.php?s=/Category/remove/id/8.html', 1, 1438087031),
+(48, 11, 1, 2130706433, 'category', 9, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1438087067),
+(49, 11, 1, 2130706433, 'category', 10, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1438087334),
+(50, 11, 1, 2130706433, 'category', 11, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1438087377),
+(51, 11, 1, 2130706433, 'category', 10, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1438087398),
+(52, 11, 1, 2130706433, 'category', 9, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1438087415),
+(53, 11, 1, 2130706433, 'category', 9, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1438087419),
+(54, 11, 1, 2130706433, 'category', 12, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1438087435),
+(55, 11, 1, 2130706433, 'category', 13, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1438087470),
+(56, 11, 1, 2130706433, 'category', 14, '操作url：/51bb/admin.php?s=/Category/add.html', 1, 1438087485),
+(57, 11, 1, 2130706433, 'category', 1, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1438087498),
+(58, 11, 1, 2130706433, 'category', 2, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1438087499),
+(59, 11, 1, 2130706433, 'category', 6, '操作url：/51bb/admin.php?s=/Category/edit.html', 1, 1438087500);
 
 -- --------------------------------------------------------
 
@@ -751,20 +786,23 @@ CREATE TABLE IF NOT EXISTS `bb_category` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_name` (`name`),
   KEY `pid` (`pid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='分类表' AUTO_INCREMENT=45 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='分类表' AUTO_INCREMENT=15 ;
 
 --
 -- 转存表中的数据 `bb_category`
 --
 
 INSERT INTO `bb_category` (`id`, `name`, `title`, `pid`, `sort`, `list_row`, `meta_title`, `keywords`, `description`, `template_index`, `template_lists`, `template_detail`, `template_edit`, `model`, `model_sub`, `type`, `link_id`, `allow_publish`, `display`, `reply`, `check`, `reply_model`, `extend`, `create_time`, `update_time`, `status`, `icon`, `groups`) VALUES
-(1, 'blog', '饮食行业', 0, 0, 10, '', '', '', '', '', '', '', '2,3', '2', '2,1', 0, 0, 1, 0, 0, '1', '', 1379474947, 1437466405, 1, 0, ''),
-(2, 'default_blog', '快餐', 1, 1, 10, '', 'sssss', 'sdfsdfasdf', '', '', '', '', '2,3', '2', '2,1,3', 0, 1, 1, 0, 0, '1', '', 1379475028, 1437810881, 1, 0, ''),
-(39, 'shitangchengbao', '食堂承包', 1, 0, 10, '', '', '', '', '', '', '', '', '', '2', 0, 1, 1, 0, 0, '', NULL, 1437466621, 1437812902, 1, 0, '饮食行业'),
-(40, 'youxianyule', '休闲娱乐', 0, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1437466752, 1437466752, 1, 0, ''),
-(41, 'yundongjianshen', '运动健身', 40, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1437466780, 1437466780, 1, 0, ''),
-(42, 'KTV', 'KTV', 40, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1437466802, 1437466802, 1, 0, ''),
-(43, 'xiyu/wenquan', '洗浴/温泉', 40, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1437466838, 1437466838, 1, 0, '');
+(1, 'announce', '系统公告', 0, 1, 10, '', '', '', '', '', '', '', '2', '2', '2', 0, 1, 1, 1, 0, '', NULL, 1437995751, 1438087498, 1, 0, 'announce'),
+(2, 'common', '站内文章', 0, 2, 10, '', '', '', '', '', '', '', '2', '2', '2', 0, 1, 1, 0, 0, '', NULL, 1437996352, 1438087499, 1, 0, 'common'),
+(6, 'systemcategory', '行业分类', 0, 3, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 1, '', NULL, 1438086872, 1438087500, 1, 0, 'systemcategory'),
+(7, 'jiazheng', '家政服务', 6, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1438086924, 1438086924, 1, 0, 'systemcategory'),
+(9, 'diannaoweixiu', '婚纱摄影', 6, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1438087067, 1438087419, 1, 0, 'systemcategory'),
+(10, 'banjia', '搬家', 7, 0, 10, '', '', '', '', '', '', '', '', '', '2', 0, 1, 1, 0, 0, '', NULL, 1438087334, 1438087398, 1, 0, 'systemcategory'),
+(11, 'baomuyuesao', '保姆/月嫂', 7, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1438087377, 1438087377, 1, 0, 'systemcategory'),
+(12, 'guimizhao', '闺蜜照', 9, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1438087435, 1438087435, 1, 0, 'systemcategory'),
+(13, 'datouzhao', '大头照', 9, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1438087470, 1438087470, 1, 0, 'systemcategory'),
+(14, 'yunfuzhao', '孕妇照', 9, 0, 10, '', '', '', '', '', '', '', '', '', '', 0, 1, 1, 0, 0, '', NULL, 1438087485, 1438087485, 1, 0, 'systemcategory');
 
 -- --------------------------------------------------------
 
@@ -818,40 +856,42 @@ CREATE TABLE IF NOT EXISTS `bb_config` (
   UNIQUE KEY `uk_name` (`name`),
   KEY `type` (`type`),
   KEY `group` (`group`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
 
 --
 -- 转存表中的数据 `bb_config`
 --
 
 INSERT INTO `bb_config` (`id`, `name`, `type`, `title`, `group`, `extra`, `remark`, `create_time`, `update_time`, `status`, `value`, `sort`) VALUES
-(1, 'WEB_SITE_TITLE', 1, '网站标题', 1, '', '网站标题前台显示标题', 1378898976, 1379235274, 1, 'OneThink内容管理框架', 0),
-(2, 'WEB_SITE_DESCRIPTION', 2, '网站描述', 1, '', '网站搜索引擎描述', 1378898976, 1379235841, 1, 'OneThink内容管理框架', 1),
-(3, 'WEB_SITE_KEYWORD', 2, '网站关键字', 1, '', '网站搜索引擎关键字', 1378898976, 1381390100, 1, 'ThinkPHP,OneThink', 8),
-(4, 'WEB_SITE_CLOSE', 4, '关闭站点', 1, '0:关闭,1:开启', '站点关闭后其他用户不能访问，管理员可以正常访问', 1378898976, 1379235296, 1, '1', 1),
-(9, 'CONFIG_TYPE_LIST', 3, '配置类型列表', 4, '', '主要用于数据解析和页面表单的生成', 1378898976, 1379235348, 1, '0:数字\r\n1:字符\r\n2:文本\r\n3:数组\r\n4:枚举', 2),
-(10, 'WEB_SITE_ICP', 1, '网站备案号', 1, '', '设置在网站底部显示的备案号，如“沪ICP备12007941号-2', 1378900335, 1379235859, 1, '', 9),
-(11, 'DOCUMENT_POSITION', 3, '文档推荐位', 2, '', '文档推荐位，推荐到多个位置KEY值相加即可', 1379053380, 1379235329, 1, '1:列表推荐\r\n2:频道推荐\r\n4:首页推荐', 3),
-(12, 'DOCUMENT_DISPLAY', 3, '文档可见性', 2, '', '文章可见性仅影响前台显示，后台不收影响', 1379056370, 1379235322, 1, '0:所有人可见\r\n1:仅注册会员可见\r\n2:仅管理员可见', 4),
-(13, 'COLOR_STYLE', 4, '后台色系', 1, 'default_color:默认\r\nblue_color:紫罗兰', '后台颜色风格', 1379122533, 1379235904, 1, 'default_color', 10),
-(20, 'CONFIG_GROUP_LIST', 3, '配置分组', 4, '', '配置分组', 1379228036, 1384418383, 1, '1:基本\r\n2:内容\r\n3:用户\r\n4:系统', 4),
-(21, 'HOOKS_TYPE', 3, '钩子的类型', 4, '', '类型 1-用于扩展显示内容，2-用于扩展业务处理', 1379313397, 1379313407, 1, '1:视图\r\n2:控制器', 6),
-(22, 'AUTH_CONFIG', 3, 'Auth配置', 4, '', '自定义Auth.class.php类配置', 1379409310, 1379409564, 1, 'AUTH_ON:1\r\nAUTH_TYPE:2', 8),
-(23, 'OPEN_DRAFTBOX', 4, '是否开启草稿功能', 2, '0:关闭草稿功能\r\n1:开启草稿功能\r\n', '新增文章时的草稿功能配置', 1379484332, 1379484591, 1, '1', 1),
-(24, 'DRAFT_AOTOSAVE_INTERVAL', 0, '自动保存草稿时间', 2, '', '自动保存草稿的时间间隔，单位：秒', 1379484574, 1386143323, 1, '60', 2),
-(25, 'LIST_ROWS', 0, '后台每页记录数', 2, '', '后台数据每页显示记录数', 1379503896, 1380427745, 1, '10', 10),
-(26, 'USER_ALLOW_REGISTER', 4, '是否允许用户注册', 3, '0:关闭注册\r\n1:允许注册', '是否开放用户注册', 1379504487, 1379504580, 1, '1', 3),
-(27, 'CODEMIRROR_THEME', 4, '预览插件的CodeMirror主题', 4, '3024-day:3024 day\r\n3024-night:3024 night\r\nambiance:ambiance\r\nbase16-dark:base16 dark\r\nbase16-light:base16 light\r\nblackboard:blackboard\r\ncobalt:cobalt\r\neclipse:eclipse\r\nelegant:elegant\r\nerlang-dark:erlang-dark\r\nlesser-dark:lesser-dark\r\nmidnight:midnight', '详情见CodeMirror官网', 1379814385, 1384740813, 1, 'ambiance', 3),
-(28, 'DATA_BACKUP_PATH', 1, '数据库备份根路径', 4, '', '路径必须以 / 结尾', 1381482411, 1381482411, 1, './Data/', 5),
-(29, 'DATA_BACKUP_PART_SIZE', 0, '数据库备份卷大小', 4, '', '该值用于限制压缩后的分卷最大长度。单位：B；建议设置20M', 1381482488, 1381729564, 1, '20971520', 7),
-(30, 'DATA_BACKUP_COMPRESS', 4, '数据库备份文件是否启用压缩', 4, '0:不压缩\r\n1:启用压缩', '压缩备份文件需要PHP环境支持gzopen,gzwrite函数', 1381713345, 1381729544, 1, '1', 9),
-(31, 'DATA_BACKUP_COMPRESS_LEVEL', 4, '数据库备份文件压缩级别', 4, '1:普通\r\n4:一般\r\n9:最高', '数据库备份文件的压缩级别，该配置在开启压缩时生效', 1381713408, 1381713408, 1, '9', 10),
-(32, 'DEVELOP_MODE', 4, '开启开发者模式', 4, '0:关闭\r\n1:开启', '是否开启开发者模式', 1383105995, 1383291877, 1, '1', 11),
-(33, 'ALLOW_VISIT', 3, '不受限控制器方法', 0, '', '', 1386644047, 1386644741, 1, '0:article/draftbox\r\n1:article/mydocument\r\n2:Category/tree\r\n3:Index/verify\r\n4:file/upload\r\n5:file/download\r\n6:user/updatePassword\r\n7:user/updateNickname\r\n8:user/submitPassword\r\n9:user/submitNickname\r\n10:file/uploadpicture', 0),
-(34, 'DENY_VISIT', 3, '超管专限控制器方法', 0, '', '仅超级管理员可访问的控制器方法', 1386644141, 1386644659, 1, '0:Addons/addhook\r\n1:Addons/edithook\r\n2:Addons/delhook\r\n3:Addons/updateHook\r\n4:Admin/getMenus\r\n5:Admin/recordList\r\n6:AuthManager/updateRules\r\n7:AuthManager/tree', 0),
-(35, 'REPLY_LIST_ROWS', 0, '回复列表每页条数', 2, '', '', 1386645376, 1387178083, 1, '10', 0),
-(36, 'ADMIN_ALLOW_IP', 2, '后台允许访问IP', 4, '', '多个用逗号分隔，如果不配置表示不限制IP访问', 1387165454, 1387165553, 1, '', 12),
-(37, 'SHOW_PAGE_TRACE', 4, '是否显示页面Trace', 4, '0:关闭\r\n1:开启', '是否显示页面Trace信息', 1387165685, 1387165685, 1, '0', 1);
+(1, 'WEB_SITE_TITLE', 1, '网站标题', 1, '', '网站标题前台显示标题', 1378898976, 1379235274, 1, 'OneThink内容管理框架', 3),
+(2, 'WEB_SITE_DESCRIPTION', 2, '网站描述', 1, '', '网站搜索引擎描述', 1378898976, 1379235841, 1, 'OneThink内容管理框架', 7),
+(3, 'WEB_SITE_KEYWORD', 2, '网站关键字', 1, '', '网站搜索引擎关键字', 1378898976, 1381390100, 1, 'ThinkPHP,OneThink', 21),
+(4, 'WEB_SITE_CLOSE', 4, '关闭站点', 1, '0:关闭,1:开启', '站点关闭后其他用户不能访问，管理员可以正常访问', 1378898976, 1379235296, 1, '1', 8),
+(9, 'CONFIG_TYPE_LIST', 3, '配置类型列表', 4, '', '主要用于数据解析和页面表单的生成', 1378898976, 1379235348, 1, '0:数字\r\n1:字符\r\n2:文本\r\n3:数组\r\n4:枚举', 11),
+(10, 'WEB_SITE_ICP', 1, '网站备案号', 1, '', '设置在网站底部显示的备案号，如“沪ICP备12007941号-2', 1378900335, 1379235859, 1, '', 23),
+(11, 'DOCUMENT_POSITION', 3, '文档推荐位', 2, '', '文档推荐位，推荐到多个位置KEY值相加即可', 1379053380, 1379235329, 1, '1:列表推荐\r\n2:频道推荐\r\n4:首页推荐', 13),
+(12, 'DOCUMENT_DISPLAY', 3, '文档可见性', 2, '', '文章可见性仅影响前台显示，后台不收影响', 1379056370, 1379235322, 1, '0:所有人可见\r\n1:仅注册会员可见\r\n2:仅管理员可见', 16),
+(13, 'COLOR_STYLE', 4, '后台色系', 1, 'default_color:默认\r\nblue_color:紫罗兰', '后台颜色风格', 1379122533, 1379235904, 1, 'default_color', 25),
+(20, 'CONFIG_GROUP_LIST', 3, '配置分组', 4, '', '配置分组', 1379228036, 1384418383, 1, '1:基本\r\n2:内容\r\n3:用户\r\n4:系统', 17),
+(21, 'HOOKS_TYPE', 3, '钩子的类型', 4, '', '类型 1-用于扩展显示内容，2-用于扩展业务处理', 1379313397, 1379313407, 1, '1:视图\r\n2:控制器', 19),
+(22, 'AUTH_CONFIG', 3, 'Auth配置', 4, '', '自定义Auth.class.php类配置', 1379409310, 1379409564, 1, 'AUTH_ON:1\r\nAUTH_TYPE:2', 22),
+(23, 'OPEN_DRAFTBOX', 4, '是否开启草稿功能', 2, '0:关闭草稿功能\r\n1:开启草稿功能\r\n', '新增文章时的草稿功能配置', 1379484332, 1379484591, 1, '1', 9),
+(24, 'DRAFT_AOTOSAVE_INTERVAL', 0, '自动保存草稿时间', 2, '', '自动保存草稿的时间间隔，单位：秒', 1379484574, 1386143323, 1, '60', 12),
+(25, 'LIST_ROWS', 0, '后台每页记录数', 2, '', '后台数据每页显示记录数', 1379503896, 1380427745, 1, '10', 26),
+(26, 'USER_ALLOW_REGISTER', 4, '是否允许用户注册', 3, '0:关闭注册\r\n1:允许注册', '是否开放用户注册', 1379504487, 1379504580, 1, '1', 14),
+(27, 'CODEMIRROR_THEME', 4, '预览插件的CodeMirror主题', 4, '3024-day:3024 day\r\n3024-night:3024 night\r\nambiance:ambiance\r\nbase16-dark:base16 dark\r\nbase16-light:base16 light\r\nblackboard:blackboard\r\ncobalt:cobalt\r\neclipse:eclipse\r\nelegant:elegant\r\nerlang-dark:erlang-dark\r\nlesser-dark:lesser-dark\r\nmidnight:midnight', '详情见CodeMirror官网', 1379814385, 1384740813, 1, 'ambiance', 15),
+(28, 'DATA_BACKUP_PATH', 1, '数据库备份根路径', 4, '', '路径必须以 / 结尾', 1381482411, 1381482411, 1, './Data/', 18),
+(29, 'DATA_BACKUP_PART_SIZE', 0, '数据库备份卷大小', 4, '', '该值用于限制压缩后的分卷最大长度。单位：B；建议设置20M', 1381482488, 1381729564, 1, '20971520', 20),
+(30, 'DATA_BACKUP_COMPRESS', 4, '数据库备份文件是否启用压缩', 4, '0:不压缩\r\n1:启用压缩', '压缩备份文件需要PHP环境支持gzopen,gzwrite函数', 1381713345, 1381729544, 1, '1', 24),
+(31, 'DATA_BACKUP_COMPRESS_LEVEL', 4, '数据库备份文件压缩级别', 4, '1:普通\r\n4:一般\r\n9:最高', '数据库备份文件的压缩级别，该配置在开启压缩时生效', 1381713408, 1381713408, 1, '9', 27),
+(32, 'DEVELOP_MODE', 4, '开启开发者模式', 4, '0:关闭\r\n1:开启', '是否开启开发者模式', 1383105995, 1383291877, 1, '1', 28),
+(33, 'ALLOW_VISIT', 3, '不受限控制器方法', 0, '', '', 1386644047, 1386644741, 1, '0:article/draftbox\r\n1:article/mydocument\r\n2:Category/tree\r\n3:Index/verify\r\n4:file/upload\r\n5:file/download\r\n6:user/updatePassword\r\n7:user/updateNickname\r\n8:user/submitPassword\r\n9:user/submitNickname\r\n10:file/uploadpicture', 4),
+(34, 'DENY_VISIT', 3, '超管专限控制器方法', 0, '', '仅超级管理员可访问的控制器方法', 1386644141, 1386644659, 1, '0:Addons/addhook\r\n1:Addons/edithook\r\n2:Addons/delhook\r\n3:Addons/updateHook\r\n4:Admin/getMenus\r\n5:Admin/recordList\r\n6:AuthManager/updateRules\r\n7:AuthManager/tree', 5),
+(35, 'REPLY_LIST_ROWS', 0, '回复列表每页条数', 2, '', '', 1386645376, 1387178083, 1, '10', 6),
+(36, 'ADMIN_ALLOW_IP', 2, '后台允许访问IP', 4, '', '多个用逗号分隔，如果不配置表示不限制IP访问', 1387165454, 1387165553, 1, '', 29),
+(37, 'SHOW_PAGE_TRACE', 4, '是否显示页面Trace', 4, '0:关闭\r\n1:开启', '是否显示页面Trace信息', 1387165685, 1387165685, 1, '0', 10),
+(38, 'BB_VERSION', 1, '无忧帮帮版本号', 4, '', '', 1438084523, 1438084557, 1, '1.0', 1),
+(39, 'BB_UPDATE_URL', 1, '无忧帮帮更新地址', 4, '', '', 1438084646, 1438084646, 1, 'http://www.pgyer.com/48tw', 2);
 
 -- --------------------------------------------------------
 
@@ -887,14 +927,17 @@ CREATE TABLE IF NOT EXISTS `bb_document` (
   PRIMARY KEY (`id`),
   KEY `idx_category_status` (`category_id`,`status`),
   KEY `idx_status_type_pid` (`status`,`uid`,`pid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文档模型基础表' AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='文档模型基础表' AUTO_INCREMENT=9 ;
 
 --
 -- 转存表中的数据 `bb_document`
 --
 
 INSERT INTO `bb_document` (`id`, `uid`, `name`, `title`, `category_id`, `group_id`, `description`, `root`, `pid`, `model_id`, `type`, `position`, `link_id`, `cover_id`, `display`, `deadline`, `attach`, `view`, `comment`, `extend`, `level`, `create_time`, `update_time`, `status`) VALUES
-(1, 1, '', 'OneThink1.1开发版发布', 2, 0, '期待已久的OneThink最新版发布', 0, 0, 2, 2, 0, 0, 0, 1, 0, 0, 8, 0, 0, 0, 1406001413, 1406001413, 1);
+(8, 1, 'WUYOUBANGBANGDECLARE', '无忧帮帮用户协议', 2, 0, '', 0, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1438000245, 1438000245, 1),
+(3, 1, '', '热烈庆祝无忧帮帮正式上线', 1, 0, '', 0, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1437996132, 1437996132, 1),
+(5, 1, '', '无忧帮帮正式上市，每股售价1亿', 1, 0, '', 0, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1437996214, 1437996214, 1),
+(7, 1, 'ABOUTWUYOUBANGBAGN', '关于无忧帮帮', 2, 0, '', 0, 0, 2, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1437999448, 1437999448, 1);
 
 -- --------------------------------------------------------
 
@@ -916,7 +959,10 @@ CREATE TABLE IF NOT EXISTS `bb_document_article` (
 --
 
 INSERT INTO `bb_document_article` (`id`, `parse`, `content`, `template`, `bookmark`) VALUES
-(1, 0, '<h1>\r\n	OneThink1.1开发版发布&nbsp;\r\n</h1>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<strong>OneThink是一个开源的内容管理框架，基于最新的ThinkPHP3.2版本开发，提供更方便、更安全的WEB应用开发体验，采用了全新的架构设计和命名空间机制，融合了模块化、驱动化和插件化的设计理念于一体，开启了国内WEB应用傻瓜式开发的新潮流。&nbsp;</strong> \r\n</p>\r\n<h2>\r\n	主要特性：\r\n</h2>\r\n<p>\r\n	1. 基于ThinkPHP最新3.2版本。\r\n</p>\r\n<p>\r\n	2. 模块化：全新的架构和模块化的开发机制，便于灵活扩展和二次开发。&nbsp;\r\n</p>\r\n<p>\r\n	3. 文档模型/分类体系：通过和文档模型绑定，以及不同的文档类型，不同分类可以实现差异化的功能，轻松实现诸如资讯、下载、讨论和图片等功能。\r\n</p>\r\n<p>\r\n	4. 开源免费：OneThink遵循Apache2开源协议,免费提供使用。&nbsp;\r\n</p>\r\n<p>\r\n	5. 用户行为：支持自定义用户行为，可以对单个用户或者群体用户的行为进行记录及分享，为您的运营决策提供有效参考数据。\r\n</p>\r\n<p>\r\n	6. 云端部署：通过驱动的方式可以轻松支持平台的部署，让您的网站无缝迁移，内置已经支持SAE和BAE3.0。\r\n</p>\r\n<p>\r\n	7. 云服务支持：即将启动支持云存储、云安全、云过滤和云统计等服务，更多贴心的服务让您的网站更安心。\r\n</p>\r\n<p>\r\n	8. 安全稳健：提供稳健的安全策略，包括备份恢复、容错、防止恶意攻击登录，网页防篡改等多项安全管理功能，保证系统安全，可靠、稳定的运行。&nbsp;\r\n</p>\r\n<p>\r\n	9. 应用仓库：官方应用仓库拥有大量来自第三方插件和应用模块、模板主题，有众多来自开源社区的贡献，让您的网站“One”美无缺。&nbsp;\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<strong>&nbsp;OneThink集成了一个完善的后台管理体系和前台模板标签系统，让你轻松管理数据和进行前台网站的标签式开发。&nbsp;</strong> \r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<h2>\r\n	后台主要功能：\r\n</h2>\r\n<p>\r\n	1. 用户Passport系统\r\n</p>\r\n<p>\r\n	2. 配置管理系统&nbsp;\r\n</p>\r\n<p>\r\n	3. 权限控制系统\r\n</p>\r\n<p>\r\n	4. 后台建模系统&nbsp;\r\n</p>\r\n<p>\r\n	5. 多级分类系统&nbsp;\r\n</p>\r\n<p>\r\n	6. 用户行为系统&nbsp;\r\n</p>\r\n<p>\r\n	7. 钩子和插件系统\r\n</p>\r\n<p>\r\n	8. 系统日志系统&nbsp;\r\n</p>\r\n<p>\r\n	9. 数据备份和还原\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	&nbsp;[ 官方下载：&nbsp;<a href="http://www.onethink.cn/download.html" target="_blank">http://www.onethink.cn/download.html</a>&nbsp;&nbsp;开发手册：<a href="http://document.onethink.cn/" target="_blank">http://document.onethink.cn/</a>&nbsp;]&nbsp;\r\n</p>\r\n<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	<strong>OneThink开发团队 2013~2014</strong> \r\n</p>', '', 0);
+(3, 0, '热烈庆祝无忧帮帮正式上线', '', 0),
+(5, 0, '无忧帮帮正式上市，每股售价1亿', '', 0),
+(7, 0, '我家，以舒适、便捷为目标，集家庭生活、社区服务为一体，为有理想、有态度、有智慧的我家成员带来品质与轻松兼得的生活体验，精心打造专属于您的幸福生活小管家。<br />\r\n我家，以舒适、便捷为目标，集家庭生活、社区服务为一体，为有理想、有态度、有智慧的我家成员带来品质与轻松兼得的生活体验，精心打造专属于您的幸福生活小管家。<br />\r\n我家，以舒适、便捷为目标，集家庭生活、社区服务为一体，为有理想、有态度、有智慧的我家成员带来品质与轻松兼得的生活体验，精心打造专属于您的幸福生活小管家。<br />\r\n我家，以舒适、便捷为目标，集家庭生活<br />', '', 0),
+(8, 0, '我家，以舒适、便捷为目标，集家庭生活、社区服务为一体，为有理想、有态度、有智慧的我家成员带来品质与轻松兼得的生活体验，精心打造专属于您的幸福生活小管家。<br />\r\n&nbsp; &nbsp; &nbsp;我家，以舒适、便捷为目标，集家庭生活、社区服务为一体，为有理想、有态度、有智慧的我家成员带来品质与轻松兼得的生活体验，精心打造专属于您的幸福生活小管家。<br />\r\n&nbsp; &nbsp; &nbsp;我家，以舒适、便捷为目标，集家庭生活、社区服务为一体，为有理想、有态度、有智慧的我家成员带来品质与轻松兼得的生活体验，精心打造专属于您的幸福生活小管家。<br />\r\n&nbsp; &nbsp; &nbsp;我家，以舒适、便捷为目标，集家庭生活<br />', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1021,7 +1067,7 @@ CREATE TABLE IF NOT EXISTS `bb_member` (
 --
 
 INSERT INTO `bb_member` (`uid`, `nickname`, `sex`, `birthday`, `qq`, `score`, `login`, `reg_ip`, `reg_time`, `last_login_ip`, `last_login_time`, `status`) VALUES
-(1, 'admin', 0, '0000-00-00', '', 30, 4, 0, 1437465367, 2130706433, 1437807255, 1);
+(1, 'admin', 0, '0000-00-00', '', 40, 10, 0, 1437465367, 2130706433, 1438084372, 1);
 
 -- --------------------------------------------------------
 
@@ -1282,7 +1328,7 @@ CREATE TABLE IF NOT EXISTS `bb_ucenter_member` (
 --
 
 INSERT INTO `bb_ucenter_member` (`id`, `username`, `password`, `email`, `mobile`, `reg_time`, `reg_ip`, `last_login_time`, `last_login_ip`, `update_time`, `status`) VALUES
-(1, 'admin', '1bf0bed0a83a0b15d7e286bb5902bb29', 'admin@admin.com', '', 1437465367, 2130706433, 1437807255, 2130706433, 1437465367, 1);
+(1, 'admin', '1bf0bed0a83a0b15d7e286bb5902bb29', 'admin@admin.com', '', 1437465367, 2130706433, 1438084372, 2130706433, 1437465367, 1);
 
 -- --------------------------------------------------------
 

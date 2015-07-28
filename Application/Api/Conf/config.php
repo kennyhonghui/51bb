@@ -18,7 +18,7 @@ return array(
     /** 手机验证码相关设定 */
     'SMS' => array(
         //关闭则不发送信息，直接返回验证码，方便开发时调试。
-        'SEND_SMS' => TRUE,
+        'SEND_SMS' => FALSE,
         //短信验证码过期时间,单位为"分钟".
         'SMS_EXPIRE' => 3,
         //API调用地址
@@ -40,8 +40,11 @@ return array(
     /** TOKEN */
     'TOKEN' => '51bbHappyBirthday',
 
-    /** 版本号 */
-    'version' => '1.0',
+    /** UPDATE & VERSION 版本号控制与APP更新地址 */
+    'VERSION_BUILDER' => array(
+        'version' => 'BB_VERSION',
+        'url'     => 'BB_UPDATE_URL',
+    ),
 
     /** 操作时间间隔,单位为"分钟" */
     'TIME_INTERVAL' => 5,
@@ -113,6 +116,7 @@ return array(
 
         #About模块
         30000 => '获取文章列表失败',
+        30001 => '获取版本号失败',
 
         #分类
         40001 => '暂无分类列表',

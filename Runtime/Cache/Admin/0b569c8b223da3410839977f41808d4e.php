@@ -85,48 +85,48 @@
             
 
             
+	<!-- 标题栏 -->
 	<div class="main-title">
-		<h2>导航管理</h2>
+		<h2>行为日志</h2>
 	</div>
 
-	<div class="cf">
-		<a class="btn" href="<?php echo U('add','pid='.$pid);?>">新 增</a>
-		<a class="btn" href="javascript:;">删 除</a>
-		<button class="btn list_sort" url="<?php echo U('sort',array('pid'=>I('get.pid',0)),'');?>">排序</button>
+    <div>
+        <button class="btn ajax-get confirm" url="<?php echo U('clear');?>">清 空</button>
+		<button class="btn ajax-post confirm" target-form="ids" url="<?php echo U('remove');?>">删 除</button>
+    </div>
+	<!-- 数据列表 -->
+	<div class="data-table">
+	<table class="">
+    <thead>
+        <tr>
+		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+		<th class="">编号</th>
+		<th class="">行为名称</th>
+		<th class="">执行者</th>
+		<th class="">执行时间</th>
+		<th class="">操作</th>
+		</tr>
+    </thead>
+    <tbody>
+		<?php if(!empty($_list)): if(is_array($_list)): $i = 0; $__LIST__ = $_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+            <td><input class="ids" type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td>
+			<td><?php echo ($vo["id"]); ?> </td>
+			<td><?php echo get_action($vo['action_id'],'title');?></td>
+			<td><?php echo get_nickname($vo['user_id']);?></td>
+			<td><span><?php echo (time_format($vo["create_time"])); ?></span></td>
+			<td><a href="<?php echo U('Action/edit?id='.$vo['id']);?>">详细</a>
+				<a class="confirm ajax-get" href="<?php echo U('Action/remove?ids='.$vo['id']);?>">删除</a>
+                </td>
+		</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+		<?php else: ?>
+		<td colspan="6" class="text-center"> aOh! 暂时还没有内容! </td><?php endif; ?>
+	</tbody>
+    </table>
 	</div>
+	<!-- 分页 -->
+	<div class="page"><?php echo ($_page); ?></div>
+	<!-- /分页 -->
 
-	<div class="data-table table-striped">
-		<table>
-			<thead>
-				<tr>
-					<th class="row-selected">
-						<input class="checkbox check-all" type="checkbox">
-					</th>
-					<th>ID</th>
-					<th>导航名称</th>
-					<th>导航地址</th>
-                    <th>排序</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php if(!empty($list)): if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$channel): $mod = ($i % 2 );++$i;?><tr>
-						<td><input class="ids row-selected" type="checkbox" name="" id="" value="<?php echo ($channel['id']); ?>"> </td>
-						<td><?php echo ($channel["id"]); ?></td>
-						<td><a href="<?php echo U('index?pid='.$channel['id']);?>"><?php echo ($channel["title"]); ?></a></td>
-						<td><?php echo ($channel["url"]); ?></td>
-                        <td><?php echo ($channel["sort"]); ?></td>
-						<td>
-							<a title="编辑" href="<?php echo U('edit?id='.$channel['id'].'&pid='.$pid);?>">编辑</a>
-							<a href="<?php echo U('setStatus?ids='.$channel['id'].'&status='.abs(1-$channel['status']));?>" class="ajax-get"><?php echo (show_status_op($channel["status"])); ?></a>
-							<a class="confirm ajax-get" title="删除" href="<?php echo U('del?id='.$channel['id']);?>">删除</a>
-						</td>
-					</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-				<?php else: ?>
-				<td colspan="6" class="text-center"> aOh! 暂时还没有内容! </td><?php endif; ?>
-			</tbody>
-		</table>
-	</div>
 
         </div>
         <div class="cont-ft">
@@ -222,25 +222,11 @@
     </script>
     
 <script type="text/javascript">
-    $(function() {
-    	//点击排序
-    	$('.list_sort').click(function(){
-    		var url = $(this).attr('url');
-    		var ids = $('.ids:checked');
-    		var param = '';
-    		if(ids.length > 0){
-    			var str = new Array();
-    			ids.each(function(){
-    				str.push($(this).val());
-    			});
-    			param = str.join(',');
-    		}
-
-    		if(url != undefined && url != ''){
-    			window.location.href = url + '/ids/' + param;
-    		}
-    	});
-    });
+$(function(){
+	$("#action_add").click(function(){
+		window.location.href = $(this).attr('url');
+	})
+})
 </script>
 
 </body>

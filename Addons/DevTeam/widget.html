@@ -14,7 +14,7 @@
 					</tr>
 					<tr>
 						<th>产品设计及研发团队</th>
-						<td>黄思佳 苏志强 崔伟大 谢昨非 胡鸿辉</td>
+						<td>苏志强 崔伟大 谢昨非 胡鸿辉</td>
 					</tr>
 					<tr>
 						<th>界面及用户体验团队</th>
@@ -22,7 +22,7 @@
 					</tr>
 					<tr>
 						<th>官方网址</th>
-						<td><a href="http://www.281.com.cn" target="_blank">www.281.com.cn</a></td>
+						<td><a href="http://www.51bangbang.com.cn/" target="_blank">http://www.51bangbang.com.cn/</a></td>
 					</tr>
 				</table>
 			</div>

@@ -225,4 +225,12 @@ class CategoryController extends AdminController {
         }
 
     }
+
+    /**
+     * 汉字转拼音
+     * @param $string
+     */
+    public function pinyin( $string ){
+        import('Think.Pinyin');
+    }
 }

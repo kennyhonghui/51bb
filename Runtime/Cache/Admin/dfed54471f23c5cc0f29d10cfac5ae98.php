@@ -109,7 +109,7 @@
 							分类名称<span class="check-tips">（名称不能为空）</span>
 						</label>
 						<div class="controls">
-							<input type="text" name="title" class="text input-large" value="<?php echo ((isset($info["title"]) && ($info["title"] !== ""))?($info["title"]):''); ?>">
+							<input type="text" id="title" name="title" class="text input-large" value="<?php echo ((isset($info["title"]) && ($info["title"] !== ""))?($info["title"]):''); ?>">
 						</div>
 					</div>
 					<div class="form-item">
@@ -117,7 +117,7 @@
 							分类标识<span class="check-tips">（英文字母）</span>
 						</label>
 						<div class="controls">
-							<input type="text" name="name" class="text input-large" value="<?php echo ((isset($info["name"]) && ($info["name"] !== ""))?($info["name"]):''); ?>">
+							<input type="text" id="name" name="name" class="text input-large" value="<?php echo ((isset($info["name"]) && ($info["name"] !== ""))?($info["name"]):''); ?>">
 						</div>
 					</div>
 					<div class="form-item">
@@ -418,6 +418,11 @@
 		});
 		//导航高亮
 		highlight_subnav('<?php echo U('Category/index');?>');
+
+
+        $('#title').blur(function(){
+            alert(1);
+        });
 	</script>
 
 </body>

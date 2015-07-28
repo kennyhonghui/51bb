@@ -99,5 +99,26 @@ class AboutModel extends Model{
         );
     }
 
+    /**
+     * 获取版本信息，以及更新地址
+     * @return array
+     */
+    public function version(){
+        $version_info = C('VERSION_BUILDER');
+        $config  = M('config');
+
+        $version = $version_info['version'];
+        $url     = $version_info['url'];
+
+        $result = $config -> field('value') -> where("name='$version' or name='$url'")->order('sort asc')->select();
+        if( is_array($result) && count($result) == 2 ){
+            return array('code'=>0, 'data' => array(
+                'version' => $result[0]['value'],
+                'url' => $result[1]['value'],
+                'request' => $result[1]['value'] . '?version=' . $result[0]['value'],
+            ));
+        }
+        return array('code' => 30001, 'data' => '');
+    }
 
 }

@@ -455,8 +455,7 @@ class MemberModel extends Model{
     /**
      * 用于验证key，普通授权
      * @param $key
-     * @param bool $data - 为true则返回字段数组
-     * @return bool
+     * @return int
      */
     public function certificate($key){
         $userModel = M('51_user');
@@ -464,7 +463,6 @@ class MemberModel extends Model{
         $info =  $sql->select();
         return !is_null($info) ? $info[0] : 20000;
     }
-
 
     /**
      * @param $uid
