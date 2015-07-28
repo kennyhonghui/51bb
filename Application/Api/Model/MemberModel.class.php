@@ -21,6 +21,10 @@ class MemberModel extends Model{
         'REGISTER','RESET'
     );
 
+    /**
+     * @param $user
+     * @return array
+     */
     public function getsmscode($user){
         //检测手机号码格式
         $chkmobile = $this -> checkmobile($user);
@@ -30,9 +34,9 @@ class MemberModel extends Model{
         $result = $this -> savecode( $user, $code );
 
         if( $result == 0 ){
-            if( C('SEND_SMS') ){
-                //$this -> sendSMS( $user, $code );
-                return array('code'=>0, 'data'=>$code);
+            if( C('SMS')['SEND_SMS'] ){
+                $this -> sendSMS( $user, $code );
+                return array('code'=>0, 'data'=>'');
             }else{
                 return array('code'=>0, 'data'=>$code);
             }
@@ -87,9 +91,16 @@ class MemberModel extends Model{
      * @param $code
      */
     public function sendSMS($user, $code){
-        $url = 'http://120.24.158.159:8090/sendSMS/';
-        $request = $url . $user . '/' . $code;
-        @file_get_contents($request);
+        $sms_config = C('SMS');
+        $url = $sms_config['URL'];
+
+        $params = "key=4ec08df222fbc6c179e83aa1da3cf631&dtype=json&mobile=$user";
+        $params .= "&tpl_id=".$sms_config['SMS_TEMPLATE']['common'];
+        $params .= "&tpl_value=". urlencode('#app#='.C('PROJECT_NAME').'&#code#='.$code);
+        $request = $url . '?' . $params;
+
+        var_dump($request);
+        //@file_get_contents($request);
     }
 
 
@@ -134,9 +145,11 @@ class MemberModel extends Model{
         $smscode = M('51_smscode');
         $exist = $smscode -> where("mobile='$user' AND code='$code'")->select();
         if( !is_null($exist) ){
-            $expire = (int)C('SMS_EXPIRE') * 60;
+            $expire = (int)C('SMS')['SMS_EXPIRE'] * 60;
             $codedata = $exist[0]['code'];
             $datetime = get_datetime( $exist[0]['datetime']);
+
+            //检查是否过期
             if( time() - $datetime > $expire ){
                 return 20002;
             }else{

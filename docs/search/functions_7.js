@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['setphoto',['setphoto',['../class_api_1_1_controller_1_1_member_controller.html#a46ebc020150dfdfba0b5a3b4ce1829af',1,'Api::Controller::MemberController']]],
-  ['status',['status',['../class_api_1_1_controller_1_1_member_controller.html#a19e49aea71e41a8bd6076bc45169e4a3',1,'Api::Controller::MemberController']]]
+  ['login',['login',['../class_api_1_1_controller_1_1_member_controller.html#aa311da27ba5706f5710cea7706c8eae1',1,'Api::Controller::MemberController']]],
+  ['logout',['logout',['../class_api_1_1_controller_1_1_member_controller.html#a082405d89acd6835c3a7c7a08a7adbab',1,'Api::Controller::MemberController']]]
 ];

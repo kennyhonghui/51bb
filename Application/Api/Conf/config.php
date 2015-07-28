@@ -9,23 +9,37 @@
  */
 
 return array(
+    /** 项目名称 */
+    'PROJECT_NAME' => '无忧帮帮',
+
     /** 调试模式 */
     'DEBUG_MODE' => FALSE,
 
-    /** 短信验证码过期时间,单位为"分钟" */
-    'SMS_EXPIRE' => 3,
-    /** 发送手机验证码开关，方便调试  */
+    /** 手机验证码相关设定 */
+    'SMS' => array(
+        //关闭则不发送信息，直接返回验证码，方便开发时调试。
+        'SEND_SMS' => TRUE,
+        //短信验证码过期时间,单位为"分钟".
+        'SMS_EXPIRE' => 3,
+        //API调用地址
+        'URL'      => 'http://v.juhe.cn/sms/send',
+        //短信模板
+        'SMS_TEMPLATE' => array(
+            'common'   => 4716,   //【无忧帮帮】欢迎使用#app#，您的手机验证码是#code#，本条信息无需回复。
+            'register' => 4715,   //【无忧帮帮】感谢您注册#app#，您的验证码是#code#，如非本人操作，请忽略本短信
+            'password' => 4714,   //【无忧帮帮】您本次找回密码的验证码是#code#，有效期为#minutes#分钟，请尽快验证。
+        ),
+    ),
 
-    'SEND_SMS' =>  TRUE,
     /** API默认返回的数据格式 */
-
     'DEFAULT_AJAX_RETURN' => 'JSON',
+
     /** 加密密匙 */
-
     'ENCRYPT_KEY'  => '93035ZQ1kIjapEaso0nkuNwu+gcKWZrutCtOS6at6rV5XPnAr8E',
-    /** TOKEN */
 
+    /** TOKEN */
     'TOKEN' => '51bbHappyBirthday',
+
     /** 版本号 */
     'version' => '1.0',
 

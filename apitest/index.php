@@ -70,7 +70,7 @@ $postdata = array(
 ); 
 
 /**  用户中心部分 ***/
-//$data = getRequest( $server . '/member/getsmscode', $postdata, 'string' );
+$data = getRequest( $server . '/member/getsmscode', $postdata, 'string' );
 //$data = getRequest( $server . '/member/forgot', $postdata, 'string' );
 //$data = getRequest( $server . '/member/reset', $postdata, 'string' );
 //$data = getRequest( $server . '/member/login', $postdata, 'string' );

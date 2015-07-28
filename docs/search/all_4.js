@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['getinfo',['getinfo',['../class_api_1_1_controller_1_1_category_controller.html#abedd95dc5fbc64df72730e760287e189',1,'Api::Controller::CategoryController']]],
-  ['getlist',['getlist',['../class_api_1_1_controller_1_1_category_controller.html#a4ca848bfe0e01782f5f8c05d11640e1a',1,'Api::Controller::CategoryController']]],
-  ['getsmscode',['getsmscode',['../class_api_1_1_controller_1_1_member_controller.html#ac7ab25a032af896296145ac01460e9c7',1,'Api::Controller::MemberController']]]
+  ['feedback',['feedback',['../class_api_1_1_controller_1_1_about_controller.html#ad86a86d5564a52087cd503d761ec10b4',1,'Api::Controller::AboutController']]],
+  ['forgot',['forgot',['../class_api_1_1_controller_1_1_member_controller.html#a760860eafd7560576c2c12824a800a6d',1,'Api::Controller::MemberController']]]
 ];
