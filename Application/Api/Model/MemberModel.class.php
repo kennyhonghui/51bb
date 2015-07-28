@@ -100,7 +100,7 @@ class MemberModel extends Model{
         $request = $url . '?' . $params;
 
         var_dump($request);
-        //@file_get_contents($request);
+        @file_get_contents($request);
     }
 
 
