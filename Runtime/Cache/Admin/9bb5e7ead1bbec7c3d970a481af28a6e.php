@@ -85,62 +85,61 @@
             
 
             
-	<!-- 标题栏 -->
 	<div class="main-title">
-		<h2>插件列表</h2>
-	</div>
-	<div>
-		<a href="<?php echo U('create');?>" class="btn">快速创建</a>
+		<h2>配置管理 [ <?php if(isset($_GET['group'])): ?><a href="<?php echo U('index');?>">全部</a><?php else: ?><strong>全部</strong><?php endif; ?>&nbsp;<?php if(is_array($group)): foreach($group as $key=>$vo): if(($group_id) != $key): ?><a href="<?php echo U('index?group='.$key);?>"><?php echo ($vo); ?></a><?php else: ?><strong><?php echo ($vo); ?></strong><?php endif; ?>&nbsp;<?php endforeach; endif; ?> ]</h2>
 	</div>
 
-	<!-- 数据列表 -->
+	<div class="cf">
+		<a class="btn" href="<?php echo U('add');?>">新 增</a>
+		<a class="btn" href="javascript:;">删 除</a>
+		<button class="btn list_sort" url="<?php echo U('sort?group='.I('group'),'','');?>">排序</button>
+        
+		<!-- 高级搜索 -->
+		<div class="search-form fr cf">
+			<div class="sleft">
+				<input type="text" name="name" class="search-input" value="<?php echo I('name');?>" placeholder="请输入配置名称">
+				<a class="sch-btn" href="javascript:;" id="search" url="<?php echo U('config/index');?>"><i class="btn-search"></i></a>
+			</div>
+		</div>
+	</div>
+
 	<div class="data-table table-striped">
 		<table>
 			<thead>
 				<tr>
+					<th class="row-selected">
+						<input class="checkbox check-all" type="checkbox">
+					</th>
+					<th>ID</th>
 					<th>名称</th>
-					<th>标识</th>
-					<th >描述</th>
-					<th width="43px">状态</th>
-					<th>作者</th>
-					<th width="43px">版本</th>
-					<th width="94px">操作</th>
+					<th>标题</th>
+					<th>分组</th>
+					<th>类型</th>
+					<th>操作</th>
 				</tr>
 			</thead>
 			<tbody>
-				<?php if(!empty($_list)): if(is_array($_list)): $i = 0; $__LIST__ = $_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-					<td><?php echo ($vo["title"]); ?></td>
-					<td><?php echo ($vo["name"]); ?></td>
-					<td><?php echo ($vo["description"]); ?></td>
-					<td><?php echo ((isset($vo["status_text"]) && ($vo["status_text"] !== ""))?($vo["status_text"]):"未安装"); ?></td>
-					<td><a target="_blank" href="<?php echo ((isset($vo["url"]) && ($vo["url"] !== ""))?($vo["url"]):'http://www.onethink.cn'); ?>"><?php echo ($vo["author"]); ?></a></td>
-					<td><?php echo ($vo["version"]); ?></td>
-					<td>
-						<?php if(empty($vo["uninstall"])): $class = get_addon_class($vo['name']); if(!class_exists($class)){ $has_config = 0; }else{ $addon = new $class(); $has_config = count($addon->getConfig()); } ?>
-							<?php if ($has_config): ?>
-								<a href="<?php echo U('config',array('id'=>$vo['id']));?>">设置</a>
-							<?php endif ?>
-						<?php if ($vo['status'] >=0): ?>
-							<?php if(($vo["status"]) == "0"): ?><a class="ajax-get" href="<?php echo U('enable',array('id'=>$vo['id']));?>">启用</a>
-							<?php else: ?>
-								<a class="ajax-get" href="<?php echo U('disable',array('id'=>$vo['id']));?>">禁用</a><?php endif; ?>
-						<?php endif ?>
-							
-								<a class="ajax-get" href="<?php echo U('uninstall?id='.$vo['id']);?>">卸载</a>
-							
-						<?php else: ?>
-							<a class="ajax-get" href="<?php echo U('install?addon_name='.$vo['name']);?>">安装</a><?php endif; ?>
-					</td>
-				</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+				<?php if(!empty($list)): if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$config): $mod = ($i % 2 );++$i;?><tr>
+						<td><input class="ids row-selected" type="checkbox" name="id[]" value="<?php echo ($config["id"]); ?>"></td>
+						<td><?php echo ($config["id"]); ?></td>
+						<td><a href="<?php echo U('edit?id='.$config['id']);?>"><?php echo ($config["name"]); ?></a></td>
+						<td><?php echo ($config["title"]); ?></td>
+						<td><?php echo (get_config_group($config["group"])); ?></td>
+						<td><?php echo (get_config_type($config["type"])); ?></td>
+						<td>
+							<a title="编辑" href="<?php echo U('edit?id='.$config['id']);?>">编辑</a>
+							<a class="confirm ajax-get" title="删除" href="<?php echo U('del?id='.$config['id']);?>">删除</a>
+						</td>
+					</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 				<?php else: ?>
 				<td colspan="6" class="text-center"> aOh! 暂时还没有内容! </td><?php endif; ?>
 			</tbody>
 		</table>
+		<!-- 分页 -->
+	    <div class="page">
+	        <?php echo ($_page); ?>
+	    </div>
 	</div>
-	<!-- 分页 -->
-    <div class="page">
-        <?php echo ($_page); ?>
-    </div>
 
         </div>
         <div class="cont-ft">
@@ -235,5 +234,47 @@
         }();
     </script>
     
+<script type="text/javascript">
+$(function(){
+	//搜索功能
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+        var query  = $('.search-form').find('input').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+		window.location.href = url;
+	});
+	//回车搜索
+	$(".search-input").keyup(function(e){
+		if(e.keyCode === 13){
+			$("#search").click();
+			return false;
+		}
+	});
+	//点击排序
+	$('.list_sort').click(function(){
+		var url = $(this).attr('url');
+		var ids = $('.ids:checked');
+		var param = '';
+		if(ids.length > 0){
+			var str = new Array();
+			ids.each(function(){
+				str.push($(this).val());
+			});
+			param = str.join(',');
+		}
+
+		if(url != undefined && url != ''){
+			window.location.href = url + '/ids/' + param;
+		}
+	});
+});
+</script>
+
 </body>
 </html>

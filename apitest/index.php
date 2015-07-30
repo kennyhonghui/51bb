@@ -1,8 +1,8 @@
 <?php
 header('Content-Type:text/html;charset=utf-8');
 
-$server = 'http://localhost/51bb/api';
-//$server = 'http://51.281.com.cn/?s=api';
+//$server = 'http://localhost/51bb/api';
+$server = 'http://51.281.com.cn/?s=api';
 
 $token = 'e949u0vIJmqYZF8dZHHmcx2p+fyAhP5ODtY8wLy2tkEPxfe5nr5O1qGJ7nfzew';
 
@@ -59,14 +59,14 @@ function output( $data, $encode = 1 ){
 // ); 
 
 $postdata = array(
-	'key' => '0411ba245186e8463d36de23b11b62f9',
+	//'key' => '0411ba245186e8463d36de23b11b62f9',
 	'token' => $token,
-	 'nickname' => 'Amy',
-	 'birthday' => '1977-06-09',
-	 'sex' => '1',
-	 'password' => '123456',
-	 'user' => '15913361892',
-	 'content' => '我要吃肯德基',
+	 //'nickname' => 'Amy',
+	 //'birthday' => '1977-06-09',
+	 ///'sex' => '1',
+	 //'password' => '123456',
+	// 'user' => '15913361892',
+	 //'content' => '我要吃肯德基',
 ); 
 
 /**  用户中心部分 ***/

@@ -128,6 +128,14 @@
 							</label>
 						</div>
 					</div>
+                    <div class="form-item">
+                        <label class="item-label">搜索建议</label>
+                        <div class="controls">
+                            <label class="textarea input-large">
+                                <textarea name="suggestion" placeholder="请使用换行隔开"><?php echo ((isset($info["suggestion"]) && ($info["suggestion"] !== ""))?($info["suggestion"]):''); ?></textarea>
+                            </label>
+                        </div>
+                    </div>
 					<div class="form-item">
 						<label class="item-label">
 							发布内容<span class="check-tips">（是否允许发布内容）</span>
@@ -421,7 +429,12 @@
 
 
         $('#title').blur(function(){
-            alert(1);
+            if( $('#name').val() == '' ){
+                var title = $(this).val();
+                $.post('<?php echo U("Category/pinyin");?>', {'string': title}, function(data){
+                    $('#name').val( data );
+                });
+            }
         });
 	</script>
 

@@ -30,10 +30,9 @@ class MemberModel extends Model{
         $chkmobile = $this -> checkmobile($user);
         if($chkmobile !== 0)   return array('code'=>$chkmobile, 'data'=>'');
 
-        $code = getCode();
-        $result = $this -> savecode( $user, $code );
+        $code = $this -> savecode( $user );
 
-        if( $result == 0 ){
+        if( $code ){
             if( C('SMS')['SEND_SMS'] ){
                 $this -> sendSMS( $user, $code );
                 return array('code'=>0, 'data'=>'');
@@ -41,8 +40,43 @@ class MemberModel extends Model{
                 return array('code'=>0, 'data'=>$code);
             }
         }else{
-            return array('code'=>$result, 'data'=>'');
+            return array('code'=>20001, 'data'=>'');
         }
+    }
+
+    /**
+     * 将手机验证码写入数据库，用于校对
+     * @param $user
+     * @return bool|string
+     */
+    public function savecode( $user ){
+        $smscode = M('51_smscode');
+        $fromdb = $smscode -> where("mobile='$user'")->select();
+        $sms_config = C('SMS');
+        $code = getCode();
+        $time = get_datetime();
+
+        if( is_null($fromdb) ){
+            $data['mobile'] = $user;
+            $data['count'] = 1;
+            $data['rest'] = $sms_config['ONE_DAY_LIMIT'];
+            $data['datetime'] = $time;
+            $data['code'] = $code;
+            $result = $smscode -> add($data);
+        } else {
+            $o = $fromdb[0];
+            //检测一天剩余发送的条数
+            //$rest = (int)$o['rest'];
+            //检测时间间隔
+
+            $data['datetime'] = $time;
+            $data['code'] = $code;
+            $data['todo'] = '';
+            $data['count'] = (int)$o['count'] + 1;
+            $data['rest'] = (int)$o['rest'] - 1;
+            $result = $smscode -> where("mobile = '$user'") -> save($data);
+        }
+        return $result ? $code : false;    //return $result ? 0 : 20001;
     }
 
     /**
@@ -101,37 +135,6 @@ class MemberModel extends Model{
 
         var_dump($request);
         @file_get_contents($request);
-    }
-
-
-    /**
-     * 将手机验证码写入数据库，用于校对
-     * @param $user
-     * @param $code
-     * @return int   0|20001
-     */
-    public function savecode( $user, $code ){
-        preg_match( C('MATCHES')['mobile'], $user, $matches );
-
-        $smscode = M('51_smscode');
-        $fromdb = $smscode -> where("mobile='$user'")->select();
-
-        $time = get_datetime();
-        if( is_null($fromdb) ){
-            $data['mobile'] = $user;
-            $data['count'] = 1;
-            $data['datetime'] = $time;
-            $data['code'] = $code;
-            $result = $smscode -> add($data);
-        } else {
-            $o = $fromdb[0];
-            $data['datetime'] = $time;
-            $data['code'] = $code;
-            $data['todo'] = '';
-            $data['count'] = (int)$o['count'] + 1;
-            $result = $smscode -> where("mobile = '$user'") -> save($data);
-        }
-        return $result ? 0 : 20001;
     }
 
     /**

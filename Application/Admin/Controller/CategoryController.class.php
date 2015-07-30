@@ -123,6 +123,11 @@ class CategoryController extends AdminController {
         //删除该分类信息
         $res = M('Category')->delete($cate_id);
         if($res !== false){
+
+            //删除该分类的所有其他信息
+            $catedata = M('51_catedata');
+            $catedata -> where("catid=$cate_id")->delete();
+
             //记录行为
             action_log('update_category', 'category', $cate_id, UID);
             $this->success('删除分类成功！');
@@ -228,9 +233,11 @@ class CategoryController extends AdminController {
 
     /**
      * 汉字转拼音
-     * @param $string
      */
-    public function pinyin( $string ){
+    public function pinyin(){
+        $string = $_POST['string'];
         import('Think.Pinyin');
+        $Pinyin = new \Think\Pinyin();
+        echo $Pinyin -> output($string);
     }
 }

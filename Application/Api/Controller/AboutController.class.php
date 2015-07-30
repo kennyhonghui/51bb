@@ -27,7 +27,7 @@ class AboutController extends ApiController
     /**
      * <pre>
      * 接    口：/about/feedback - 用户反馈信息接口
-     * 传    入：key:string
+     * 传    入：key:string, content:string
      * 参数说明： 用户密匙
      * 返    回：json: example-{"status": int, "msg":string, "data": empty_string}
      * </pre>

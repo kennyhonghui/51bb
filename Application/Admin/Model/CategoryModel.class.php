@@ -57,7 +57,30 @@ class CategoryModel extends Model{
         } else { //通过标识查询
             $map['name'] = $id;
         }
-        return $this->field($field)->where($map)->find();
+
+        $tmp = array();
+        $suggestions = $this -> suggestionsinfo($id);
+        if( $suggestions ){
+            $tmp['suggestion'] = $suggestions;
+        }
+        $fields = $this->field($field)->where($map)->find();
+        $fields = array_merge($fields, $tmp);
+        return $fields;
+    }
+
+    private function suggestionsinfo( $id ){
+        $name = 'suggestion';
+        $catedata = M('51_catedata');
+        $result = $catedata ->field('value') -> where("name='$name' and catid=$id") ->select();
+
+        if(is_array($result)){
+            $suggest = array();
+            foreach($result as $arr){
+                array_push($suggest, $arr['value']);
+            }
+            return implode("\n", $suggest);
+        }
+        return false;
     }
 
     /**
@@ -128,13 +151,13 @@ class CategoryModel extends Model{
         if(!$data){ //数据对象创建错误
             return false;
         }
-
         /* 添加或更新数据 */
         if(empty($data['id'])){
             $res = $this->add();
         }else{
             $res = $this->save();
         }
+        $suggestions = $this -> suggestions($data['id'], $res);
 
         //更新分类缓存
         S('sys_category_list', null);
@@ -143,6 +166,28 @@ class CategoryModel extends Model{
         action_log('update_category', 'category', $data['id'] ? $data['id'] : $res, UID);
 
         return $res;
+    }
+
+    private function suggestions( $id, $res){
+        $suggestion = trim($_POST['suggestion']);
+        $catedata = M('51_catedata');
+        if(!empty($id)) {
+            //更新时，先删除旧数据，然后添加新数据
+            $catedata->where('catid=' . $id . ' and name="suggestion"')->delete();
+        }
+        $listArr = explode("\n",$suggestion);
+        if( !empty($listArr) && $listArr[0] !=='' ) {
+            $data = array();
+            foreach ($listArr as $arr) {
+                $catedatainfo['catid'] = $id ? $id : $res;
+                $catedatainfo['name'] = 'suggestion';
+                $catedatainfo['value'] = $arr;
+                array_push($data, $catedatainfo);
+            }
+            $result = $catedata->addAll($data);
+        }
+
+        return $result ? true : false;
     }
 
     /**
