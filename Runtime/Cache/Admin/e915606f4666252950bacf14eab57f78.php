@@ -127,7 +127,7 @@
         <div class="cont-ft">
             <div class="copyright">
                 <div class="fl"><a href="http://www.51bangbang.com.cn/" target="_blank">无忧帮帮</a>管理平台</div>
-                <div class="fr">V<?php echo (BB_VERSION); ?></div>
+                <div class="fr">V1.0</div>
             </div>
         </div>
     </div>

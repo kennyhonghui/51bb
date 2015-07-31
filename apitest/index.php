@@ -93,10 +93,10 @@ $postdata = array(
 
 /***  ABOUT模块   ***/
 //$data = getRequest( $server . '/about/feedback', $postdata, 'string' );
-$data = getRequest( $server . '/about/version', $postdata, 'string' );
+//$data = getRequest( $server . '/about/version', $postdata, 'string' );
 //$data = getRequest( $server . '/about/announce', $postdata, 'string' );
 //$data = getRequest( $server . '/about/about', $postdata, 'string' );
-//$data = getRequest( $server . '/about/declaration', $postdata, 'string' );
+$data = getRequest( $server . '/about/declaration', $postdata, 'string' );
 output($data, 0);
 ?>
 
