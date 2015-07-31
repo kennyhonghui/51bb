@@ -39,7 +39,7 @@ class UpdateController extends AdminController{
 	 */
 	private function checkVersion(){
 		if(extension_loaded('curl')){
-			$url = 'http://www.onethink.cn/index.php?m=home&c=check_version';
+			$url = '';
 			$params = array(
 					'version' => ONETHINK_VERSION,
 					'domain'  => $_SERVER['HTTP_HOST'],

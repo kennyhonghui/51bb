@@ -1,11 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | OneThink [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2013 http://www.onethink.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.thinkphp.cn>
-// +----------------------------------------------------------------------
 
 /**
  * 前台配置文件
@@ -13,7 +6,7 @@
  */
 return array(
     /* 数据缓存设置 */
-    'DATA_CACHE_PREFIX'    => 'onethink_', // 缓存前缀
+    'DATA_CACHE_PREFIX'    => 'bb_', // 缓存前缀
     'DATA_CACHE_TYPE'      => 'File', // 数据缓存类型
     'URL_MODEL'            => 3, //URL模式
 
@@ -61,8 +54,8 @@ return array(
     'UPLOAD_QINIU_CONFIG'=>array(
         'accessKey'=>'__ODsglZwwjRJNZHAu7vtcEf-zgIxdQAY-QqVrZD',
         'secrectKey'=>'Z9-RahGtXhKeTUYy9WCnLbQ98ZuZ_paiaoBjByKv',
-        'bucket'=>'onethinktest',
-        'domain'=>'onethinktest.u.qiniudn.com',
+        'bucket'=>'bbtest',
+        'domain'=>'',
         'timeout'=>3600,
     ),
 
@@ -93,8 +86,8 @@ return array(
     ),
 
     /* SESSION 和 COOKIE 配置 */
-    'SESSION_PREFIX' => 'onethink_admin', //session前缀
-    'COOKIE_PREFIX'  => 'onethink_admin_', // Cookie前缀 避免冲突
+    'SESSION_PREFIX' => 'bb_admin', //session前缀
+    'COOKIE_PREFIX'  => 'bb_admin_', // Cookie前缀 避免冲突
     'VAR_SESSION_ID' => 'session_id',	//修复uploadify插件无法传递session_id的bug
 
     /* 后台错误页面模板 */
