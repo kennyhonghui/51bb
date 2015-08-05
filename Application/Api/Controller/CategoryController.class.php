@@ -28,17 +28,5 @@ class CategoryController extends ApiController
         $this -> respons($result['code'], $result['data']);
     }
 
-    /**
-     * <pre>
-     * 接    口：/category/getinfo - 根据cid获取行业分类信息
-     * 传    入：cid:int
-     * 参数说明： cid: 分类id
-     * 返    回：json: example-{"status": int, "msg":string, "data": json}
-     * </pre>
-     */
-    public function getinfo(){
-        $parent = $this->post('cid');
-        $result = D('Category') -> categoryInfo($parent);
-        $this -> respons($result['code'], $result['data']);
-    }
+
 }

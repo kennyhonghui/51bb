@@ -1,8 +1,8 @@
 <?php
 /*--------------------------------------
- * ĞĞÒµ·ÖÀàÏµÍ³Ä£ĞÍ - bb_category
+ * è¡Œä¸šåˆ†ç±»ç³»ç»Ÿæ¨¡å‹ - bb_category
  *
- * @Project ÎŞÓÇ°ï°ï
+ * @Project æ— å¿§å¸®å¸®
  * @Author  HHH
  * @Date    2015/7/20 18:01
  *--------------------------------------
@@ -14,20 +14,20 @@ use Think\Model;
 class CategoryModel extends Model{
 
     Protected $autoCheckFields = false;
-    private $int_preg = '/^\d*$/';
+    private $int_preg = '/^\d+$/';
 
     /**
-     * @param $parent
+     * @param $parent  - 0:ä¸€çº§æ ç›®
      * @return array
      */
     public function getCategory($parent){
         $d = M('category');
         $data = array();
+        preg_match($this->int_preg,$parent, $matches);
+        if(empty($matches)) return array("code" => 40002, 'data' => '');
 
-        preg_match($this->int_preg,$parent, $matchs);
-        if(empty($matchs)) return array("code" => 40002, 'data' => '');
-
-        $cats = $d -> where("pid='$parent' AND status=1")->select();
+        if( (int)$parent === 0 ) $parent = C('CATEGORY_ID');   //è½¬æ¢ID
+        $cats = $d -> where("pid='$parent' AND status=1 AND groups='systemcategory'")->select();
         if( $cats && count($cats)>0 ){
             foreach( $cats as $cat ){
                 array_push( $data, array(

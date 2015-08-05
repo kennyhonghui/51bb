@@ -1,8 +1,7 @@
 <?php
 header('Content-Type:text/html;charset=utf-8');
-
-//$server = 'http://localhost/51bb/api';
-$server = 'http://51.281.com.cn/?s=api';
+$server = 'http://localhost/51bb/api';
+//$server = 'http://51.281.com.cn/?s=api';
 
 $token = 'e949u0vIJmqYZF8dZHHmcx2p+fyAhP5ODtY8wLy2tkEPxfe5nr5O1qGJ7nfzew';
 
@@ -56,18 +55,19 @@ function output( $data, $encode = 1 ){
 	// 'nickname' => 'kenny',
 	// 'birthday' => '1988-06-08',
 	// 'sex' => '0',
+	// 'parent' => 0,
 // ); 
 
-$postdata = array(
-	//'key' => '0411ba245186e8463d36de23b11b62f9',
-	'token' => $token,
-	 //'nickname' => 'Amy',
-	 //'birthday' => '1977-06-09',
-	 ///'sex' => '1',
-	 //'password' => '123456',
+// $postdata = array(
+	// 'key' => '3fb8e418c472db431f45122e93f0e000',
+	// 'token' => $token,
+	 // 'nickname' => 'Amy',
+	 // 'birthday' => '1977-06-09',
+	 // 'sex' => '1',
+	 // 'password' => '123456',
 	// 'user' => '15913361892',
-	 //'content' => '我要吃肯德基',
-); 
+	 // 'content' => '我要吃肯德基',
+// ); 
 
 /**  用户中心部分 ***/
 //$data = getRequest( $server . '/member/getsmscode', $postdata, 'string' );
@@ -81,9 +81,6 @@ $postdata = array(
 //$data = getRequest( $server . '/member/logout', $postdata, 'string' );
 //$data = getRequest( $server . '/member/status', $postdata, 'string' );
 
-
-//$data = getRequest( $server . '/category/getlist', $postdata, 'json' );
-
 /***   订单部分  ****/
 //$data = getRequest( $server . '/order/create', $postdata, 'json' );
 
@@ -96,11 +93,11 @@ $postdata = array(
 //$data = getRequest( $server . '/about/version', $postdata, 'string' );
 //$data = getRequest( $server . '/about/announce', $postdata, 'string' );
 //$data = getRequest( $server . '/about/about', $postdata, 'string' );
-$data = getRequest( $server . '/about/declaration', $postdata, 'string' );
-output($data, 0);
+//$data = getRequest( $server . '/about/declaration', $postdata, 'string' );
+//output($data, 1);
 ?>
 
-<!--
+
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -110,10 +107,12 @@ output($data, 0);
 	});
 </script>
 <p class="acc" onClick="upload_file.click()">个人头像 <span class="pull-right"><img id="personImg" src="images/person.jpg"></span> </p>
-<form id="file_form" enctype="multipart/form-data" action="http://51.281.com.cn/?s=api/member/setphoto/" target="exec_target"  method="post">
+<!--<form id="file_form" enctype="multipart/form-data" action="http://51.281.com.cn/?s=api/member/setphoto/" target="exec_target"  method="post">-->
+<form id="file_form" enctype="multipart/form-data" action="http://localhost/51bb/api/member/setphoto/" target="exec_target"  method="post">
 	<input id="upload_file" name="file" type="file" style="display:none">
-	<input id="userid" name="key" type="hidden" value="d161e118d3f4911a213b1b216d6c95c7" style="display:none">
+	<input id="userid" name="key" type="hidden" value="3fb8e418c472db431f45122e93f0e000" style="display:none">
 	<input id="token" name="token" type="hidden" value="e949u0vIJmqYZF8dZHHmcx2p+fyAhP5ODtY8wLy2tkEPxfe5nr5O1qGJ7nfzew" style="display:none">
+	<input id="token" name="HttpServletRequest" type="hidden" value="123456" style="display:none">
 </form>
-<iframe id="exec_target" name="exec_target" width=100% height=100%></iframe>
--->
+<iframe id="exec_target" name="exec_target" width="100%" height="100%"></iframe>
+

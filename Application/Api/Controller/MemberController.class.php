@@ -146,8 +146,8 @@ class MemberController extends ApiController{
      */
     public function setphoto(){
         $key = $this -> post('key');
-        //$HttpServletRequest = $this -> post('HttpServletRequest');
-        $status = D('Member') -> setphoto($key);
+        $HttpServletRequest = $this -> post('HttpServletRequest');
+        $status = D('Member') -> setphoto($key, $HttpServletRequest);
         $this -> respons($status['code'], $status['data']);
     }
 

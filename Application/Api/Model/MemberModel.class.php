@@ -133,7 +133,7 @@ class MemberModel extends Model{
         $params .= "&tpl_value=". urlencode('#app#='.C('PROJECT_NAME').'&#code#='.$code);
         $request = $url . '?' . $params;
 
-        var_dump($request);
+        //var_dump($request);
         @file_get_contents($request);
     }
 
@@ -301,16 +301,30 @@ class MemberModel extends Model{
      * @return array
      */
     public function info( $key ){
-        $userinfo = $this -> certificate($key, 1);
+        $userinfo = $this -> certificate($key);
 
         if( is_array($userinfo) ){
+
+            $uid      = $userinfo['uid'];
+            $nickname = $userinfo['nickname'];
+            $sex      = $userinfo['sex'];
+            $mobile   = $userinfo['mobile'];
+            $birthday = $userinfo['birthday'];
+            $userphotoid  = $userinfo['userphoto'];
+
+            //获取用户头像
+            $image = M('51_image');
+            $userphotoinfo = $image -> where("id=$userphotoid")->limit(1)->select();
+            $userphoto = is_array($userphotoinfo) && $uid === $userphotoinfo[0]['uid'] ? $userphotoinfo[0]['url'] : './Uploads/51bangbang/userphotos/default.png';
+            $userphoto = C('SITE_URL').substr($userphoto, 2, strlen($userphoto));
+
             return array('status' => 0, 'data' => array(
-                'uid' => $userinfo['uid'],
-                'nickname' => $userinfo['nickname'],
-                'sex' => $userinfo['sex'],
-                'mobile' => $userinfo['mobile'],
-                'birthday' => $userinfo['birthday'],
-                'userphoto' => $userinfo['userphoto'],
+                'uid' => $uid,
+                'nickname' => $nickname,
+                'sex' => $sex,
+                'mobile' => $mobile,
+                'birthday' => $birthday,
+                'userphoto' => $userphoto,
             ));
         }else {
             return array( 'status' => $userinfo, 'data' => '' );
@@ -349,37 +363,47 @@ class MemberModel extends Model{
      * @param $key
      * @return array
      */
-    public function setphoto($key){
+
+    /*public function setphoto($key, $HttpServletRequest){
+        return array( 'code' => 0, 'data' => array(
+            'HttpServletRequest' => $HttpServletRequest,
+            'globals' => $GLOBALS,
+        ));
+    }*/
+
+    public function setphoto($key, $HttpServletRequest){
         $info = $this ->certificate($key);
 
         if( is_array($info) ){
             $uid = $info['uid'];
+            $photoid = $info['userphoto'];
+
             $imgModel = M('51_image');
-            $userphoto = $imgModel -> where("uid='$uid'")->limit(1)->select();
+            $userphoto = $imgModel -> where("id='$photoid' and uid='$uid'")->limit(1)->select();
             $currentphoto =  !is_null($userphoto) ? $userphoto[0]['url'] : '';  //当前头像的路径
 
             import('@.Tools.Upload');
             $uploader = new \Tools\Upload();
-            $uploader->maxSize        = size_translate(C('UPLOAD')['maxsize']); // 设置附件上传大小
-            $uploader->allowExts      = C('UPLOAD')['allowpicexts'];            // 设置附件上传类型
+            $setting = C('UPLOAD');
+            $uploader->maxSize        = size_translate($setting['maxsize']); // 设置附件上传大小
+            $uploader->allowExts      = $setting['allowpicexts'];            // 设置附件上传类型
             $uploader->thumb          = false;                                   // 启用缩略图
-            $uploader->savePath       = C('UPLOAD')['userphotopath'];           // 设置上传目录
-            $uploader->thumbPath      = C('UPLOAD')['userphotoThumbPath'];      // 缩略图上传目录
-            $uploader->thumbMaxWidth  = C('UPLOAD')['userphotoThumbMaxWidth'];  // 缩略图最大宽度
-            $uploader->thumbMaxHeight = C('UPLOAD')['userphotoThumbMaxHeight']; // 缩略图最大高度
-            $uploader->thumbExt       = C('UPLOAD')['thumbExt'];                // 缩略图文件类型
-            $uploader->uploadReplace  = C('UPLOAD')['uploadReplace'];           // 是否覆盖同名
+            $uploader->savePath       = $setting['userphotopath'];           // 设置上传目录
+            $uploader->thumbPath      = $setting['userphotoThumbPath'];      // 缩略图上传目录
+            $uploader->thumbMaxWidth  = $setting['userphotoThumbMaxWidth'];  // 缩略图最大宽度
+            $uploader->thumbMaxHeight = $setting['userphotoThumbMaxHeight']; // 缩略图最大高度
+            $uploader->thumbExt       = $setting['thumbExt'];                // 缩略图文件类型
+            $uploader->uploadReplace  = $setting['uploadReplace'];           // 是否覆盖同名
             $uploader->saveRule       = date( 'YmdHis', time() ).'_'.$uid;
-
-            //判断文件是否存在, 存在则删除原来的
-            if(file_exists($currentphoto))   unlink($currentphoto);
 
             if(!$uploader->upload()) {
                 return array(
                     'code' => 20014,
-                    'data' => $_FILES,
+                    'data'=> '',
                 );
             }else{
+                //判断文件是否存在, 存在则删除原来的
+                if( '' !== $currentphoto && file_exists($currentphoto))   unlink($currentphoto);
                 // 上传成功 获取上传文件信息
                 $msg =  $uploader->getUploadFileInfo();
                 $fileinfo = $msg[0];
@@ -393,17 +417,22 @@ class MemberModel extends Model{
                 $data['size']        = $fileinfo['size'];
                 $data['sha1']        = $fileinfo['hash'];
                 $data['create_time'] = time();
-                $data['url']         = (C('UPLOAD')['userphotopath']).($fileinfo['savename']);
+                $data['url']         = ($setting['userphotopath']).($fileinfo['savename']);
 
-                !is_null($userphoto) ? $userphoto[0]['savename'] : '';
-                $result = !is_null($userphoto) ?
-                    $imgModel -> where("uid='$uid'")->save($data) :
-                    $imgModel -> where("uid='$uid'")->add($data)  ;
+                $sql = $imgModel -> where("id='$photoid' and uid='$uid'");
+                if( is_array($userphoto) ){
+                    $result = $sql -> save($data);
+                }else{
+                    $result = $sql -> add($data);
+                    $lastInsID = $imgModel -> getLastInsID();
+                    //将$lastInsID更新到user表
+                    M('51_user') -> where("uid=$uid") -> save( array('userphoto'=>$lastInsID) );
+                }
 
                 return $result ? array('code' => 0,
                     'data' => array(
                         'uid' => $uid,
-                        'url' => $data['url'],
+                        'url' => C('SITE_URL').substr($data['url'], 2, strlen($data['url'])),
                     )
 
                 ) : array('code'=>20014, 'data'=>'');

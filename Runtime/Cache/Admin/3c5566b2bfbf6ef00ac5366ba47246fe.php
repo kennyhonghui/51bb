@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>欢迎您登录OneThink</title>
+        <title>无忧帮帮后台管理系统</title>
         <link rel="stylesheet" type="text/css" href="/51bb/Public/Admin/css/login.css" media="all">
        	<link rel="stylesheet" type="text/css" href="/51bb/Public/Admin/css/<?php echo (C("COLOR_STYLE")); ?>.css" media="all">
     </head>

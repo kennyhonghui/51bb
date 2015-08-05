@@ -12,6 +12,10 @@ return array(
     /** 项目名称 */
     'PROJECT_NAME' => '无忧帮帮',
 
+    /** 网址域名 */
+    'SITE_URL' => 'http://localhost/51bb/',
+    //'SITE_URL' => 'http://51.281.com.cn/',
+
     /** 调试模式 */
     'DEBUG_MODE' => FALSE,
 
@@ -34,6 +38,8 @@ return array(
             'password' => 4714,   //【无忧帮帮】您本次找回密码的验证码是#code#，有效期为#minutes#分钟，请尽快验证。
         ),
     ),
+    /** 行业分类ID */
+    'CATEGORY_ID' => 6,
 
     /** API默认返回的数据格式 */
     'DEFAULT_AJAX_RETURN' => 'JSON',

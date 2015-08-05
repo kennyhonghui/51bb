@@ -21,9 +21,8 @@ class OrderController extends ApiController{
      * </pre>
      */
     public function create(){
-       // $requires = array( 'user', 'content', 'lng', 'lat' );
-       // $params = $this -> post( $requires );
-
-        var_dump(get_order_sn());
+        $requires = array( 'user', 'content', 'lng', 'lat' );
+        $params = $this -> post( $requires );
+        //$result = D('') ->
     }
 }
