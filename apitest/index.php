@@ -1,7 +1,7 @@
 <?php
 header('Content-Type:text/html;charset=utf-8');
-$server = 'http://localhost/51bb/api';
-//$server = 'http://51.281.com.cn/?s=api';
+//$server = 'http://localhost/51bb/api';
+$server = 'http://51.281.com.cn/?s=api';
 
 $token = 'e949u0vIJmqYZF8dZHHmcx2p+fyAhP5ODtY8wLy2tkEPxfe5nr5O1qGJ7nfzew';
 
@@ -18,6 +18,7 @@ function getRequest($url, $postdata, $data_format) {
     if( strtolower($data_format) == 'json' ){
         $header = "application/json; charset=utf-8;";
         $postdata = json_encode( $postdata );
+		echo $postdata . "<br /><br /><br /><br />";
     } else {
         $header = "application/x-www-form-urlencoded;";
         $postdata = http_build_query( $postdata );
@@ -43,20 +44,20 @@ function output( $data, $encode = 1 ){
 }
 
 //require_once "postdata.php";
-// $postdata = array(
-	// 'user' => '15913361892',
-	// 'password' => '123456',
-	// 'password1' => '123456',
-	// 'password2' => '123456',
-	// 'code' => '477604',
-	// 'token' => $token,
-	// 'content' => '我要点外卖',
+$postdata = array(
+	'user' => '15913361892',
+	'password' => '123456',
+	'password1' => '123456',
+	'password2' => '123456',
+	'code' => '477604',
+	'token' => $token,
+	'content' => '我要点外卖',
 	
-	// 'nickname' => 'kenny',
-	// 'birthday' => '1988-06-08',
-	// 'sex' => '0',
-	// 'parent' => 0,
-// ); 
+	'nickname' => 'kenny',
+	'birthday' => '1988-06-08',
+	'sex' => '0',
+	'parent' => 0,
+); 
 
 // $postdata = array(
 	// 'key' => '3fb8e418c472db431f45122e93f0e000',
@@ -73,7 +74,7 @@ function output( $data, $encode = 1 ){
 //$data = getRequest( $server . '/member/getsmscode', $postdata, 'string' );
 //$data = getRequest( $server . '/member/forgot', $postdata, 'string' );
 //$data = getRequest( $server . '/member/reset', $postdata, 'string' );
-//$data = getRequest( $server . '/member/login', $postdata, 'string' );
+$data = getRequest( $server . '/member/login', $postdata, 'string' );
 //$data = getRequest( $server . '/member/register', $postdata, 'string' );
 //$data = getRequest( $server . '/member/exist', $postdata, 'string' );
 //$data = getRequest( $server . '/member/info', $postdata, 'string' );
@@ -81,7 +82,22 @@ function output( $data, $encode = 1 ){
 //$data = getRequest( $server . '/member/logout', $postdata, 'string' );
 //$data = getRequest( $server . '/member/status', $postdata, 'string' );
 
-/***   订单部分  ****/
+// /***   订单部分  ****/
+
+// $postdata = array(
+	// 'key' => '3fb8e418c472db431f45122e93f0e000',
+	// 'token' => $token,
+	// 'lng' => 1,
+	// 'lat' => 2,
+	// 'address' => '柏景台',
+	// 'categoryid' => 10,
+	// 'payment' => 3,
+	// 'mobile' => '15913361892',
+	// 'deposit' => 100,
+	// 'max' => 5,
+	// 'content' => '我想要1000万',
+// ); 
+
 //$data = getRequest( $server . '/order/create', $postdata, 'json' );
 
 /*****  获取行业分类  ****/
@@ -94,10 +110,10 @@ function output( $data, $encode = 1 ){
 //$data = getRequest( $server . '/about/announce', $postdata, 'string' );
 //$data = getRequest( $server . '/about/about', $postdata, 'string' );
 //$data = getRequest( $server . '/about/declaration', $postdata, 'string' );
-//output($data, 1);
+output($data, 0);
 ?>
 
-
+<!--
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -107,7 +123,7 @@ function output( $data, $encode = 1 ){
 	});
 </script>
 <p class="acc" onClick="upload_file.click()">个人头像 <span class="pull-right"><img id="personImg" src="images/person.jpg"></span> </p>
-<!--<form id="file_form" enctype="multipart/form-data" action="http://51.281.com.cn/?s=api/member/setphoto/" target="exec_target"  method="post">-->
+<form id="file_form" enctype="multipart/form-data" action="http://51.281.com.cn/?s=api/member/setphoto/" target="exec_target"  method="post">
 <form id="file_form" enctype="multipart/form-data" action="http://localhost/51bb/api/member/setphoto/" target="exec_target"  method="post">
 	<input id="upload_file" name="file" type="file" style="display:none">
 	<input id="userid" name="key" type="hidden" value="3fb8e418c472db431f45122e93f0e000" style="display:none">
@@ -115,4 +131,5 @@ function output( $data, $encode = 1 ){
 	<input id="token" name="HttpServletRequest" type="hidden" value="123456" style="display:none">
 </form>
 <iframe id="exec_target" name="exec_target" width="100%" height="100%"></iframe>
+-->
 

@@ -304,3 +304,15 @@ function get_seconds( $time ){
 function userpwd( $pwd ){
     return md5( sha1($pwd) );
 }
+
+
+/**
+ * 手机号码格式验证
+ * @param $mobile
+ * @return int
+ */
+function checkmobile($mobile){
+    $preg = C('MATCHES')['mobile'];
+    preg_match($preg, $mobile, $matches);
+    return empty($matches) ? 10003 : 0;
+}

@@ -22,7 +22,7 @@ return array(
     /** 手机验证码相关设定 */
     'SMS' => array(
         //关闭则不发送信息，直接返回验证码，方便开发时调试。
-        'SEND_SMS' => FALSE,
+        'SEND_SMS' =>   FALSE,
         //同一个用户一天最多允许发送多少条
         'ONE_DAY_LIMIT' => 3,
         //发送短信时间间隔，单位为"分钟".

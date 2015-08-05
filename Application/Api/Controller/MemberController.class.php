@@ -113,8 +113,9 @@ class MemberController extends ApiController{
      * </pre>
      */
     public function info(){
+        $default = './Uploads/51bangbang/userphotos/default.png';
         $key = $this -> post('key');
-        $status_code = D('Member') -> info($key);
+        $status_code = D('Member') -> info($key, $default);
         $this -> respons($status_code['status'], $status_code['data']);
     }
 

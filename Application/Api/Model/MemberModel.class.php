@@ -27,7 +27,7 @@ class MemberModel extends Model{
      */
     public function getsmscode($user){
         //检测手机号码格式
-        $chkmobile = $this -> checkmobile($user);
+        $chkmobile = checkmobile($user);
         if($chkmobile !== 0)   return array('code'=>$chkmobile, 'data'=>'');
 
         $code = $this -> savecode( $user );
@@ -89,7 +89,7 @@ class MemberModel extends Model{
      */
     public function register($user, $pwd, $code){
         //0.检测手机号码格式
-        $chkmobile = $this -> checkmobile($user);
+        $chkmobile = checkmobile($user);
         if($chkmobile !== 0)   return $chkmobile;
 
         //1.判断验证码
@@ -178,7 +178,7 @@ class MemberModel extends Model{
      */
     public function login($user, $password){
         //检测手机号码格式
-        $chkmobile = $this -> checkmobile($user);
+        $chkmobile = checkmobile($user);
         if($chkmobile !== 0)   return array('code'=>$chkmobile, 'data'=>'');
 
         $password = userpwd($password);
@@ -287,7 +287,7 @@ class MemberModel extends Model{
      * @return int
      */
     public function exist( $user ){
-        $chkmobile = $this -> checkmobile($user);
+        $chkmobile = checkmobile($user);
         if( $chkmobile !== 0 )  return $chkmobile;
 
         $usertable = M('51_user');
@@ -298,9 +298,10 @@ class MemberModel extends Model{
     /**
      * 获取用户信息
      * @param $key
+     * @param string $default
      * @return array
      */
-    public function info( $key ){
+    public function info( $key, $default = '' ){
         $userinfo = $this -> certificate($key);
 
         if( is_array($userinfo) ){
@@ -310,14 +311,18 @@ class MemberModel extends Model{
             $sex      = $userinfo['sex'];
             $mobile   = $userinfo['mobile'];
             $birthday = $userinfo['birthday'];
-            $userphotoid  = $userinfo['userphoto'];
+            $userphotoid  = (int)$userinfo['userphoto'];
 
-            //获取用户头像
-            $image = M('51_image');
-            $userphotoinfo = $image -> where("id=$userphotoid")->limit(1)->select();
-            $userphoto = is_array($userphotoinfo) && $uid === $userphotoinfo[0]['uid'] ? $userphotoinfo[0]['url'] : './Uploads/51bangbang/userphotos/default.png';
+            if( $userphotoid > 0 ){
+                //获取用户头像
+                $image = M('51_image');
+                $userphotoinfo = $image -> where("id=$userphotoid")->limit(1)->select();
+                $userphoto = is_array($userphotoinfo) && $uid === $userphotoinfo[0]['uid'] ? $userphotoinfo[0]['url'] : $default;
+            } else {
+                $userphoto = $default;
+            }
+
             $userphoto = C('SITE_URL').substr($userphoto, 2, strlen($userphoto));
-
             return array('status' => 0, 'data' => array(
                 'uid' => $uid,
                 'nickname' => $nickname,
@@ -418,6 +423,12 @@ class MemberModel extends Model{
                 $data['sha1']        = $fileinfo['hash'];
                 $data['create_time'] = time();
                 $data['url']         = ($setting['userphotopath']).($fileinfo['savename']);
+
+
+                return array('code'=>$uploader -> getUploadFileInfo(), 'data'=>array(
+                    'a'=>$uploader -> getErrorMsg(),
+                    'b' =>$uploader -> getUploadFileInfo(),
+                ));
 
                 $sql = $imgModel -> where("id='$photoid' and uid='$uid'");
                 if( is_array($userphoto) ){
@@ -533,15 +544,5 @@ class MemberModel extends Model{
         $userdataModel = M('51_userdata');
         $result = $userdataModel -> where("uid='$uid'")->save($data);
         return $result ? $data['userkey'] : 0;
-    }
-
-    /**
-     * @param $mobile
-     * @return int
-     */
-    private function checkmobile($mobile){
-        $preg = C('MATCHES')['mobile'];
-        preg_match($preg, $mobile, $matches);
-        return empty($matches) ? 10003 : 0;
     }
 }
